@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "es2020",
+    "target": "es5",
+    "declaration": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "noImplicitAny": false,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "rootDir": "./",
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "**/tests"],
+  "include": ["js"]
+}

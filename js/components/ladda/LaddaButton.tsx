@@ -5,6 +5,7 @@ import omit from 'lodash/omit';
 import { OMITTED_PROPS, } from './constants';
 import { PropsType } from './PropsType';
 import { Style } from './style';
+import './ladda.scss';
 
 const defaultProps = {
   'data-style': Style.zoomIn,

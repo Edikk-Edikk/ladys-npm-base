@@ -1,7 +1,6 @@
 import { Style } from './style';
 
 type PropsType = {
-  className?: string,
   loading: boolean,
   disabled?: boolean,
   'data-color'?: string,

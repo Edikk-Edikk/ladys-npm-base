@@ -13,7 +13,7 @@ class NetworkService {
 
   constructor(baseUrl: string, config = {}) {
     const configNew = {
-      allowCredentials: true,
+      withCredentials: true,
       baseURL: baseUrl,
       ...config,
     };

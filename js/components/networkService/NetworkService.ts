@@ -73,4 +73,6 @@ class NetworkService {
   }
 }
 
-export { NetworkService };
+const networkService = new NetworkService(process.env.API_URL);
+
+export { networkService };

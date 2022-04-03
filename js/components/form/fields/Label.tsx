@@ -1,8 +1,8 @@
 import React from 'react';
 
 type PropsType = React.LabelHTMLAttributes<any> & {
-  className: string;
   label: string | number,
+  className?: string;
   isRequired?: boolean,
 }
 

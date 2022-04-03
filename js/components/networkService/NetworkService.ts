@@ -11,10 +11,13 @@ import { ResponseType } from './types/ResponseType';
 class NetworkService {
   protected readonly axiosInstance: AxiosInstance;
 
-  constructor(baseUrl: string) {
-    this.axiosInstance = axios.create({
+  constructor(baseUrl: string, config = {}) {
+    const configNew = {
+      allowCredentials: true,
       baseURL: baseUrl,
-    });
+      ...config,
+    };
+    this.axiosInstance = axios.create(configNew);
     this.applyInterceptors();
   }
 
@@ -70,6 +73,4 @@ class NetworkService {
   }
 }
 
-const networkService = new NetworkService(process.env.API_URL);
-
-export { networkService };
+export { NetworkService };

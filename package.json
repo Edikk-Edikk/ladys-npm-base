@@ -1,6 +1,6 @@
 {
   "name": "porno-base",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/js/index.js",
   "scripts": {
     "prepare": "npm run build",

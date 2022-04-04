@@ -1,6 +1,6 @@
 import URLParse from 'url-parse';
-import queryParse from './queryParse';
-import queryBuild from './queryBuild';
+import { queryParse } from './queryParse';
+import { queryBuild } from './queryBuild';
 
 const { toString } = URLParse.prototype;
 URLParse.prototype.toString = function newToString(URLParseStringify = queryBuild): string {
@@ -8,4 +8,4 @@ URLParse.prototype.toString = function newToString(URLParseStringify = queryBuil
 };
 const urlParse = (url: string): URLParse<object | null> => new URLParse(url, {}, queryParse);
 
-export default urlParse;
+export { urlParse };

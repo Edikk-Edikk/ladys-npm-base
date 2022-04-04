@@ -8,4 +8,4 @@ const queryBuild = (query: object, options: IStringifyOptions = {}): string => {
   return stringify(query, optionsNew);
 };
 
-export default queryBuild;
+export { queryBuild };

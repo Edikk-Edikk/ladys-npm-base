@@ -8,4 +8,4 @@ const queryParse = (query: string): ParsedQs => parse(query, {
   arrayLimit: 100,
 });
 
-export default queryParse;
+export { queryParse };

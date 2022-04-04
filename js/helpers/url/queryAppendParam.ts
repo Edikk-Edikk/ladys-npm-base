@@ -1,5 +1,5 @@
-import queryParse from './queryParse';
-import queryBuild from './queryBuild';
+import { queryParse } from './queryParse';
+import { queryBuild } from './queryBuild';
 import isPlainObject from 'lodash/isPlainObject';
 import uniq from 'lodash/uniq';
 import isArray from 'lodash/isArray';
@@ -29,4 +29,4 @@ const queryAppendParam = <R extends string | object>(
   return (isObject(query) ? newQuery : queryBuild(newQuery)) as R;
 };
 
-export default queryAppendParam;
+export { queryAppendParam };

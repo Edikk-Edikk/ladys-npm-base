@@ -1,5 +1,5 @@
-import urlParse from './urlParse';
-import queryAppendParam from './queryAppendParam';
+import { urlParse } from './urlParse';
+import { queryAppendParam } from './queryAppendParam';
 
 const urlAppendParam = (
   url: string,
@@ -12,4 +12,4 @@ const urlAppendParam = (
   return urlParts.href;
 };
 
-export default urlAppendParam;
+export { urlAppendParam };

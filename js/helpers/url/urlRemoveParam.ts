@@ -1,4 +1,4 @@
-import urlParse from './urlParse';
+import { urlParse } from './urlParse';
 
 const urlRemoveParam = (url: string, paramName: string, paramValue?: string): string => {
   const urlParts = urlParse(url);
@@ -23,4 +23,4 @@ const urlRemoveParam = (url: string, paramName: string, paramValue?: string): st
   return urlParts.href;
 };
 
-export default urlRemoveParam;
+export { urlRemoveParam };

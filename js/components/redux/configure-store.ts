@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import { reducerRegistry } from './ReducerRegistry';
 import { ReducersType } from './types/ReducersType';
 import { history } from '../history';
-import { networkService } from '../networkService/NetworkService';
+import { networkService } from '../network-service';
 
 const configureStore = (initialState = {}): Store => {
   const combine = (reducers: ReducersType) => {

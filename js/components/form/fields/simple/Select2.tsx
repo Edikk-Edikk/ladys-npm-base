@@ -11,7 +11,7 @@ import 'select2';
 import isEqual from 'lodash/isEqual';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import { Select2PropsType } from '../types/Select2PropsType';
-import { networkService } from '../../../networkService/NetworkService';
+import { networkService } from '../../../network-service';
 
 const Select2 = forwardRef<any, Select2PropsType>(({
   data,

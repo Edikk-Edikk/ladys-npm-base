@@ -1,6 +1,6 @@
 import { History } from 'history';
 import { ThunkAction as ThunkActionBase } from 'redux-thunk';
-import { networkService } from '../../networkService/NetworkService';
+import { networkService } from '../../network-service';
 
 type ExtraArgument = {
   networkService: typeof networkService,

@@ -8,7 +8,6 @@ type PropsType = SelectType & {
 };
 
 const defaultProps = {
-  isRequired: false,
   className: 'form-control',
 };
 

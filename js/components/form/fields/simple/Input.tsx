@@ -10,12 +10,10 @@ type PropsType = InputPropsType & {
 
 const defaultProps = {
   type: 'text',
-  isRequired: false,
   className: 'form-control',
 };
 
 const Input: React.FC<PropsType> = forwardRef(({
-  isRequired,
   name,
   placeholder,
   value,

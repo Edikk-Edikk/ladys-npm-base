@@ -3,12 +3,12 @@
   "version": "0.0.22",
   "main": "dist/js/index.js",
   "scripts": {
-    "prepare": "npm run build",
     "check-types": "tsc --noEmit",
     "clean": "rimraf dist/",
     "copy-css": "cpy './js/**/*.scss' dist/js",
     "start": "tsc -w",
     "build": "tsc",
+    "prepare": "npm run build",
     "prebuild": "npm run clean",
     "postbuild": "npm run copy-css"
   },
@@ -37,6 +37,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
     "select2": "^4.0.5",
+    "typescript": "^4.5.5",
     "url-parse": "^1.5.10"
   },
   "devDependencies": {

@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  ladys-npm-base:
+    container_name: ladys-npm-base
+    tty: true
+    build:
+      context: .
+      dockerfile: docker/setup/webpack/Dockerfile
+    volumes:
+      - .:/app

@@ -1,5 +1,5 @@
 {
-  "name": "npm-base",
+  "name": "ladys-npm-base",
   "version": "0.0.20",
   "main": "dist/js/index.js",
   "scripts": {

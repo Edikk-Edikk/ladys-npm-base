@@ -2,7 +2,7 @@ import { FieldProps } from 'react-final-form';
 import React from 'react';
 import { Select as SelectSimple } from './simple/Select';
 import { SelectType } from './types/SelectType';
-import Field from './Field';
+import { Field } from './Field';
 
 type PropsType = SelectType & {
   // @ts-ignore

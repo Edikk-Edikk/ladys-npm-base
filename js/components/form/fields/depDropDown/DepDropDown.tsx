@@ -15,7 +15,7 @@ import { DepDropDownType } from './types/DepDropDownType';
 import { DepDropDownPropsType } from './types/DepDropDownPropsType';
 import { ValueType } from './types/ValueType';
 import { HandlersType } from './types/HandlersType';
-import Field from '../../fields/Field';
+import { Field } from '../Field';
 import { DepDropDownContent } from './DepDropDownContent';
 import { DropDownDataType } from '../types/DropDownDataType';
 

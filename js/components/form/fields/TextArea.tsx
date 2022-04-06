@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { TextArea as TextAreaSimple } from './simple/TextArea';
 import { FieldProps } from 'react-final-form';
-import Field from './Field';
+import { Field } from './Field';
 
 type PropsType = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   name: string;

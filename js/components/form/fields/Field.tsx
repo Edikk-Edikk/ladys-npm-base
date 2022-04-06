@@ -1,14 +1,19 @@
-import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
-import React from 'react';
+import { Field as FieldDefault, FieldProps, FieldRenderProps } from 'react-final-form';
+import React, { useCallback } from 'react';
 
-const identity = (value) => (value);
+type PropsType = FieldProps<any, FieldRenderProps<string>>;
 
-/* This wraps react-final-form's <Field/> component.
- * The identity function ensures form values never get set to null,
- * but rather, empty strings.
- *
- * See https://github.com/final-form/react-final-form/issues/130
- */
-export default (
-  props: FieldProps<any, FieldRenderProps<string>>,
-) => <Field parse={identity} defaultValue={null} {...props} />;
+const Field: React.FC<PropsType> = ({
+  defaultValue,
+  ...props
+}) => {
+  const parse = useCallback((value) => (value), []);
+
+  // noinspection TypeScriptValidateTypes
+  return (
+    // eslint-disable-next-line
+    <FieldDefault parse={parse} defaultValue={defaultValue ?? null} {...props} />
+  );
+};
+
+export { Field };

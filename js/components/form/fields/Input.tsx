@@ -2,7 +2,7 @@ import { FieldProps } from 'react-final-form';
 import React, { ChangeEvent, forwardRef } from 'react';
 import { Input as InputSimple } from './simple/Input';
 import { InputPropsType } from './types/InputPropsType';
-import Field from './Field';
+import { Field } from './Field';
 
 type PropsType = InputPropsType & {
   // @ts-ignore

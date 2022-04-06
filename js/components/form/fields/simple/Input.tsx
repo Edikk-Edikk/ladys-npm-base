@@ -52,7 +52,7 @@ const Input: React.FC<PropsType> = forwardRef(({
         value={value}
         onChange={onChange  }
       />
-      <div className={classNames('invalid-feedback', additionalClassName)}>
+      <div className={classNames('invalid-feedback', errorAdditionalClassName)}>
         {error}
       </div>
     </>

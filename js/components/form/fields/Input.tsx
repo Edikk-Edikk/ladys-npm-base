@@ -13,15 +13,12 @@ const Input: React.FC<PropsType> = forwardRef(({
   name,
   type,
   fieldProps,
-  additionalClassName,
   onChange,
-  value,
   ...props
 }, ref) => (
   <Field
     name={name}
     type={type}
-    value={value}
     {...fieldProps}
     render={({
       input,
@@ -38,8 +35,6 @@ const Input: React.FC<PropsType> = forwardRef(({
         <InputSimple
           ref={ref}
           error={meta.submitError || meta.error}
-          additionalClassName={additionalClassName}
-          value={value}
           {...input}
           {...props}
           onChange={handlerChange}

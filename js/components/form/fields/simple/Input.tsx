@@ -23,6 +23,7 @@ const Input: React.FC<PropsType> = forwardRef(({
   additionalClassName,
   inputmask,
   onChange,
+  errorAdditionalClassName,
 }, forwardedRef) => {
   const refInput = useRef<HTMLInputElement>();
   const refs = useMergedRefs(forwardedRef, refInput);
@@ -51,7 +52,7 @@ const Input: React.FC<PropsType> = forwardRef(({
         value={value}
         onChange={onChange  }
       />
-      <div className="invalid-feedback">
+      <div className={classNames('invalid-feedback', additionalClassName)}>
         {error}
       </div>
     </>

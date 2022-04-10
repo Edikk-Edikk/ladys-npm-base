@@ -11,14 +11,14 @@ import { ResponseType } from './types/ResponseType';
 class NetworkService {
   protected readonly axiosInstance: AxiosInstance;
 
-  constructor(baseUrl: string, config = {}) {
+  constructor(baseUrl: string, token: string, config = {}) {
     const configNew = {
       withCredentials: true,
       baseURL: baseUrl,
       ...config,
     };
     this.axiosInstance = axios.create(configNew);
-    this.applyInterceptors();
+    this.applyInterceptors(token);
   }
 
   get<T>(url: string, config?: ConfigType): Promise<ResponseType<T>> {
@@ -29,10 +29,13 @@ class NetworkService {
     return this.axiosInstance.post(url, data, config);
   }
 
-  private applyInterceptors() {
+  private applyInterceptors(token: string) {
     this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
       const newConfig = { ...config };
       newConfig.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+      if (token) {
+        newConfig.headers.common['X-Api-Key'] = token;
+      }
       newConfig.paramsSerializer = (params) => qs.stringify(params, {
         arrayFormat: 'brackets',
       });
@@ -73,6 +76,4 @@ class NetworkService {
   }
 }
 
-const networkService = new NetworkService(process.env.API_URL);
-
-export { networkService };
+export { NetworkService };

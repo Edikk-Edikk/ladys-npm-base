@@ -5,7 +5,7 @@ import { ErrorWithRedirect } from './errors/ErrorWithRedirect';
 import { ConfigType } from './types/ConfigType';
 import { ResponseErrorType } from './types/ResponseErrorType';
 import { ResponseType } from './types/ResponseType';
-import { networkService } from './NetworkService';
+import { NetworkService } from './NetworkService';
 
 export {
   ApiError,
@@ -15,5 +15,5 @@ export {
   ConfigType,
   ResponseErrorType,
   ResponseType,
-  networkService,
+  NetworkService,
 };

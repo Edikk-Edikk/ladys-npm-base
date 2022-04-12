@@ -7,13 +7,13 @@ import { Photo } from './Photo';
 import { UploadSuccessType } from './types/UploadSuccessType';
 import { RemoveSuccessType } from './types/RemoveSuccessType';
 import { ChangeInfoSuccessType } from './types/ChangeInfoSuccessType';
+import { networkServiceWrapper } from '../network-service/NetworkServiceWrapper';
 
 type PropTypes = {
   btnText: string;
   urlUpload: string;
   urlDelete: string;
   urlChangeInfo: string;
-  responsePreparer?: (response: object) => object;
   photos: PhotoType[];
   onUpdatePhotoIds?: (photoIds: number[]) => void;
 };
@@ -23,7 +23,6 @@ const PhotoUploader: React.FC<PropTypes> = ({
   urlUpload,
   urlDelete,
   urlChangeInfo,
-  responsePreparer,
   photos,
   onUpdatePhotoIds,
 }) => {
@@ -38,27 +37,32 @@ const PhotoUploader: React.FC<PropTypes> = ({
   }, [photoList]);
 
   const handlerClickRemove = (id: number) => new Promise<void>((resolve, reject) => {
-    fetch(urlDelete, {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify({
+    const networkService = networkServiceWrapper.getNetworkService();
+    let promise: Promise<RemoveSuccessType>;
+    if (networkService) {
+      promise = networkService.post<RemoveSuccessType>(urlDelete, {
         photoId: id,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    }).then<RemoveSuccessType>((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then((data) => {
-      let dataPrepared: RemoveSuccessType = data;
-      if (responsePreparer) {
-        dataPrepared = responsePreparer(data) as RemoveSuccessType;
-      }
-      setPhotoList(dataPrepared.photos);
+      }).then((response) => response.data);
+    } else {
+      promise = fetch(urlDelete, {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({
+          photoId: id,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      }).then<RemoveSuccessType>((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+    }
+    promise.then((data) => {
+      setPhotoList(data.photos);
       resolve();
     }).catch((error) => {
       // eslint-disable-next-line no-alert
@@ -68,29 +72,36 @@ const PhotoUploader: React.FC<PropTypes> = ({
   });
 
   const changeInfo = (id: number, name: string, isChecked: boolean) => new Promise<void>((resolve, reject) => {
-    fetch(urlChangeInfo, {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify({
+    const networkService = networkServiceWrapper.getNetworkService();
+    let promise: Promise<ChangeInfoSuccessType>;
+    if (networkService) {
+      promise = networkService.post<RemoveSuccessType>(urlChangeInfo, {
         name,
         value: isChecked ? 1 : 0,
         photoId: id,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    }).then<ChangeInfoSuccessType>((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then((data) => {
-      let dataPrepared: ChangeInfoSuccessType = data;
-      if (responsePreparer) {
-        dataPrepared = responsePreparer(data) as ChangeInfoSuccessType;
-      }
-      setPhotoList(dataPrepared.photos);
+      }).then((response) => response.data);
+    } else {
+      promise = fetch(urlChangeInfo, {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({
+          name,
+          value: isChecked ? 1 : 0,
+          photoId: id,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      }).then<ChangeInfoSuccessType>((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+    }
+    promise.then((data) => {
+      setPhotoList(data.photos);
       resolve();
     }).catch((error) => {
       // eslint-disable-next-line no-alert
@@ -120,24 +131,27 @@ const PhotoUploader: React.FC<PropTypes> = ({
     Array.from(files).forEach((file: Blob) => {
       const formData = new FormData();
       formData.append('file', file);
-      const promise = fetch(urlUpload, {
-        method: 'POST',
-        credentials: 'include',
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-      }).then<UploadSuccessType>((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response.json();
-      }).then((data) => {
-        let dataPrepared: UploadSuccessType = data;
-        if (responsePreparer) {
-          dataPrepared = responsePreparer(data) as UploadSuccessType;
-        }
-        setPhotoList(dataPrepared.photos);
+      const networkService = networkServiceWrapper.getNetworkService();
+      let promise: Promise<UploadSuccessType>;
+      if (networkService) {
+        promise = networkService.post<UploadSuccessType>(urlUpload, formData).then((response) => response.data);
+      } else {
+        promise = fetch(urlUpload, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        }).then<UploadSuccessType>((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+      }
+      promise.then((data) => {
+        setPhotoList(data.photos);
       }).catch((error) => {
         // eslint-disable-next-line no-alert
         window.alert(error);
@@ -145,6 +159,8 @@ const PhotoUploader: React.FC<PropTypes> = ({
       promises.push(promise);
     });
     Promise.all(promises).then(() => {
+      setIsProcess(false);
+    }).catch(() => {
       setIsProcess(false);
     });
   };

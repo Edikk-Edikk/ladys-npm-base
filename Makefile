@@ -13,8 +13,8 @@ npm-install-dev:
 npm-remove:
 	$(DOCKER_EXEC_COMMAND) "npm remove $(name)"
 
-npm-start:
-	$(DOCKER_EXEC_COMMAND) "npm run start"
+npm-watch:
+	$(DOCKER_EXEC_COMMAND) "npm run watch"
 
 npm-build:
 	$(DOCKER_EXEC_COMMAND) "npm run build"

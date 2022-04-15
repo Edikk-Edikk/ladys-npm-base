@@ -1,0 +1,73 @@
+@import "variables";
+
+.notifier {
+  position: fixed;
+  top: 60px;
+  right: 15px;
+  left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 10000;
+  color: $white;
+
+  @include media-breakpoint-up(lg) {
+    right: 15px;
+    left: initial;
+  }
+
+  &__item {
+    padding: $notifier-padding-y $notifier-padding-x;
+    border-radius: $border-radius;
+    font-size: $font-size-base;
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 500px;
+    }
+
+    & + & {
+      margin-top: 1rem;
+    }
+
+    &-enter-active {
+      animation-duration: 500ms;
+      animation-name: notifierShow;
+    }
+
+    &-exit-active {
+      animation-duration: 500ms;
+      animation-name: notifierHide;
+    }
+
+    &--black {
+      background-color: $notifier-black-background-color;
+      color: $notifier-black-color;
+      box-shadow: $notifier-black-box-shadow;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+@keyframes notifierShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes notifierHide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

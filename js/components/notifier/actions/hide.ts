@@ -1,5 +1,5 @@
 import { FSAWithPayloadType } from '../../redux';
-import { HidePayloadType } from './types/HidePayloadType';
+import { HidePayloadType } from './types';
 import { NOTIFIER_HIDE } from '../constants';
 
 const notifierHide = (id: string, force: boolean): FSAWithPayloadType<HidePayloadType> => ({

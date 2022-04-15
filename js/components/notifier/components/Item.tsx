@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { ItemType } from '../types/ItemType';
-import { useNotifier } from '../hooks/useNotifier';
-import { Variant } from '../types/Variant';
+import { ItemType } from '../types';
+import { useNotifier } from '../hooks';
+import { Variant } from '../types';
 
 const defaultProps = {
   timeout: 3000,

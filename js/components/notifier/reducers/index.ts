@@ -1,8 +1,8 @@
-import { StateNotifierType } from '../types/StateNotifierType';
+import { StateNotifierType } from '../types';
 import { ActionWithPayloadType } from '../../redux';
 import { NOTIFIER_HIDE, NOTIFIER_SHOW } from '../constants';
-import { ShowPayloadType } from '../actions/types/ShowPayloadType';
-import { HidePayloadType } from '../actions/types/HidePayloadType';
+import { ShowPayloadType } from '../actions';
+import { HidePayloadType } from '../actions';
 
 const reducerNotifier = (state: StateNotifierType = {
   items: {},

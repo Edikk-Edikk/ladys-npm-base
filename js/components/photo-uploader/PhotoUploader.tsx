@@ -151,6 +151,11 @@ const PhotoUploader: React.FC<PropTypes> = ({
         })
       }
       promise.then((data) => {
+        if (!data.status) {
+          alert(data.message);
+          return;
+        }
+
         setPhotoList(data.photos);
       }).catch((error) => {
         // eslint-disable-next-line no-alert

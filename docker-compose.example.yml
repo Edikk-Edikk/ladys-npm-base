@@ -10,6 +10,8 @@ services:
       - .:/app
     secrets:
       - github
+    environment:
+      - NPM_TOKEN=
 secrets:
   github:
     file: ~/.ssh/github

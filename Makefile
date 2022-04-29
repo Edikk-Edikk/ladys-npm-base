@@ -22,5 +22,11 @@ npm-build:
 npm-publish:
 	$(DOCKER_EXEC_COMMAND) "npm run publish"
 
+npm-version-patch:
+	$(DOCKER_EXEC_COMMAND) "npm version patch"
+
+npm-publish:
+	$(DOCKER_EXEC_COMMAND) "npm publish"
+
 exec:
 	$(DOCKER_EXEC) ladys-npm-base /bin/bash

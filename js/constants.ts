@@ -1,7 +1,13 @@
 const ERROR_MESSAGE_DEFAULT = 'Error, our specialists already know about it and take measures';
-const AUTH_COOKIE_NAME = 'token';
+const COOKIE_AUTH_TOKEN = 'authToken';
+const COOKIE_TOKEN = 'token';
+const HEADER_X_API_AUTH_TOKEN = 'X-Api-Auth-Token';
+const HEADER_X_API_TOKEN = 'X-Api-Token';
 
 export {
   ERROR_MESSAGE_DEFAULT,
-  AUTH_COOKIE_NAME,
+  COOKIE_AUTH_TOKEN,
+  COOKIE_TOKEN,
+  HEADER_X_API_AUTH_TOKEN,
+  HEADER_X_API_TOKEN,
 };

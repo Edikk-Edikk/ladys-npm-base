@@ -1,8 +1,8 @@
 import React from 'react';
-import { Variant } from '../types';
+import { SweetAlertVariant } from '../types';
 
 type PropsType = {
-  variant: Variant;
+  variant: SweetAlertVariant;
 }
 
 const Content: React.FC<PropsType> = ({ variant, children }) => {

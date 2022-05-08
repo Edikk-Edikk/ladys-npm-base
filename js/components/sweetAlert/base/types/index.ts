@@ -2,12 +2,12 @@ import { ButtonsPropsType } from './ButtonsPropsType';
 import { DefaultPropsType } from './DefaultPropsType';
 import { OptionalPropsType } from './OptionalPropsType';
 import { PropsType } from './PropsType';
-import { Variant } from './Variant';
+import { SweetAlertVariant } from './SweetAlertVariant';
 
 export {
   ButtonsPropsType,
   DefaultPropsType,
   OptionalPropsType,
   PropsType,
-  Variant,
+  SweetAlertVariant,
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ButtonProps } from 'react-bootstrap/Button';
-import { Variant } from './Variant';
+import { SweetAlertVariant } from './SweetAlertVariant';
 
 type OptionalPropsType = {
   show?: boolean;
-  type?: Variant;
+  type?: SweetAlertVariant;
   title?: string | number;
   message?: string,
   showCloseBtn?: boolean;

@@ -3,11 +3,11 @@ import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { ItemType } from '../types';
 import { useNotifier } from '../hooks';
-import { Variant } from '../types';
+import { NotifierVariant } from '../types';
 
 const defaultProps = {
   timeout: 3000,
-  variant: Variant.black,
+  variant: NotifierVariant.black,
 };
 
 const Item: React.FC<Required<ItemType>> = ({

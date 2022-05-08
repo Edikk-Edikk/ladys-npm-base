@@ -1,9 +1,9 @@
 import { ItemType } from './ItemType';
 import { StateNotifierType } from './StateNotifierType';
-import { Variant } from './Variant';
+import { NotifierVariant } from './NotifierVariant';
 
 export {
   ItemType,
   StateNotifierType,
-  Variant,
+  NotifierVariant,
 };

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
-import { Variant } from './Variant';
+import { NotifierVariant } from './NotifierVariant';
 
 type ItemType = {
   id: string;
   message: ReactNode,
   isVisible?: boolean;
   timeout?: number,
-  variant?: Variant,
+  variant?: NotifierVariant,
 };
 
 export { ItemType };

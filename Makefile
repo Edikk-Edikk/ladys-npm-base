@@ -13,12 +13,6 @@ npm-install-dev:
 npm-remove:
 	$(DOCKER_EXEC_COMMAND) "npm remove $(name)"
 
-npm-watch:
-	$(DOCKER_EXEC_COMMAND) "npm run watch"
-
-npm-build:
-	$(DOCKER_EXEC_COMMAND) "npm run build"
-
 npm-publish:
 	$(DOCKER_EXEC_COMMAND) "npm run publish"
 
@@ -27,6 +21,21 @@ npm-version-patch:
 
 npm-publish:
 	$(DOCKER_EXEC_COMMAND) "npm publish"
+
+npm-check-types:
+	$(DOCKER_EXEC_COMMAND) "npm run check-types"
+
+npm-clean:
+	$(DOCKER_EXEC_COMMAND) "npm run clean"
+
+npm-copy-css:
+	$(DOCKER_EXEC_COMMAND) "npm run copy-css"
+
+npm-watch:
+	$(DOCKER_EXEC_COMMAND) "npm run watch"
+
+npm-build:
+	$(DOCKER_EXEC_COMMAND) "npm run build"
 
 exec:
 	$(DOCKER_EXEC) ladys-npm-base /bin/bash

@@ -3,11 +3,11 @@
   "version": "0.0.41",
   "main": "dist/js/index.js",
   "scripts": {
-    "check-types": "./node_modules/typescript/bin/tsc --noEmit",
-    "clean": "./node_modules/rimraf/bin.js dist/",
-    "copy-css": "./node_modules/cpy-cli/cli.js './js/**/*.scss' dist/js",
-    "start": "./node_modules/typescript/bin/tsc -w",
-    "build": "./node_modules/typescript/bin/tsc",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf dist/",
+    "copy-css": "cpy './js/**/*.scss' dist/js",
+    "watch": "tsc -w",
+    "build": "tsc",
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "postbuild": "npm run copy-css"

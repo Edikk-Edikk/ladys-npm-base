@@ -19,6 +19,9 @@ npm-publish:
 npm-version-patch:
 	$(DOCKER_EXEC_COMMAND) "npm version patch"
 
+npm-ncu:
+	$(DOCKER_EXEC_COMMAND) "./node_modules/npm-check-updates/build/src/bin/cli.js"
+
 npm-check-types:
 	$(DOCKER_EXEC_COMMAND) "npm run check-types"
 

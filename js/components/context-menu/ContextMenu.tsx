@@ -3,7 +3,7 @@ import { usePopper } from 'react-popper';
 import { When } from 'react-if';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
-import contextMenuCss from 'srcCss/modules/context-menu.module.scss';
+import contextMenuCss from './assets/context-menu.module.scss';
 import { ContentMenuType, ContextMenuActionType } from './types';
 
 type PropsType = {

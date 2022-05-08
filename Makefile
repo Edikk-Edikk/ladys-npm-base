@@ -14,7 +14,7 @@ npm-remove:
 	$(DOCKER_EXEC_COMMAND) "npm remove $(name)"
 
 npm-publish:
-	$(DOCKER_EXEC_COMMAND) "npm run publish"
+	$(DOCKER_EXEC_COMMAND) "npm publish"
 
 npm-version-patch:
 	$(DOCKER_EXEC_COMMAND) "npm version patch"

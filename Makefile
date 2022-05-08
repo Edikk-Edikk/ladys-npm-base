@@ -19,9 +19,6 @@ npm-publish:
 npm-version-patch:
 	$(DOCKER_EXEC_COMMAND) "npm version patch"
 
-npm-publish:
-	$(DOCKER_EXEC_COMMAND) "npm publish"
-
 npm-check-types:
 	$(DOCKER_EXEC_COMMAND) "npm run check-types"
 

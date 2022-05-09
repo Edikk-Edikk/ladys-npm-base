@@ -1,0 +1,10 @@
+{
+  "reject": [
+    "axios",
+    "@types/react",
+    "history",
+    "react-redux",
+    "react",
+    "react-dom"
+  ]
+}

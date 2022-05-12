@@ -8,10 +8,14 @@ import { ContentMenuType, ContextMenuActionType } from './types';
 
 type PropsType = {
   actions: ContextMenuActionType[];
+  onShow?: (target: HTMLElement) => void;
+  onHide?: () => void;
 };
 
 const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
   actions,
+  onShow,
+  onHide,
 }, forwardedRef) => {
   const [popoverTarget, setPopoverTarget] = useState<HTMLElement>(null);
   const [popper, setPopper] = useState<HTMLDivElement>(null);
@@ -22,10 +26,16 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
 
   const show = (target: HTMLElement) => {
     setPopoverTarget(target);
+    if (onShow) {
+      onShow(target);
+    }
   };
 
   const hide = () => {
     setPopoverTarget(null);
+    if (onHide) {
+      onHide();
+    }
   };
 
   const isOpen = () => !!popoverTarget;

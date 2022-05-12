@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { When } from 'react-if';
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -24,19 +24,19 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
     modifiers: [{ name: 'arrow', options: { element: popperArrow } }],
   });
 
-  const show = (target: HTMLElement) => {
+  const show = useCallback((target: HTMLElement) => {
     setPopoverTarget(target);
     if (onShow) {
       onShow(target);
     }
-  };
+  }, [onShow]);
 
-  const hide = () => {
+  const hide = useCallback(() => {
     setPopoverTarget(null);
     if (onHide) {
       onHide();
     }
-  };
+  }, [onHide]);
 
   const isOpen = () => !!popoverTarget;
 
@@ -51,7 +51,7 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
     show,
     hide,
     isOpen,
-  }), [popoverTarget]);
+  }), [popoverTarget, show, hide]);
 
   const handlerClickOnAction = (onClick: () => void) => {
     hide();

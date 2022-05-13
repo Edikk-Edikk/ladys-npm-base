@@ -2,6 +2,7 @@ export * from './bottom-sheet';
 export * from './context-menu';
 export * from './cookies';
 export * from './form';
+export * from './inversify';
 export * from './ladda';
 export * from './loader';
 export * from './modal-fade';

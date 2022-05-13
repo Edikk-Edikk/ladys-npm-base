@@ -1,10 +1,10 @@
-import { container } from '../inversify/inversify.config';
-import { INVERSIFY_TYPES } from '../inversify/types';
+import { inversifyContainer } from '../inversify';
+import { INVERSIFY_TYPES } from '../inversify';
 import { NetworkServiceInterface } from './NetworkServiceInterface';
 
 const useNetworkService = () => {
   try {
-    return container.get<NetworkServiceInterface>(INVERSIFY_TYPES.networkService);
+    return inversifyContainer.get<NetworkServiceInterface>(INVERSIFY_TYPES.networkService);
   } catch (e) {
     return undefined;
   }

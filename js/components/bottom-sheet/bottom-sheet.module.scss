@@ -1,0 +1,60 @@
+.bottom-sheet-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.65);
+  touch-action: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1032;
+}
+
+.bottom-sheet {
+  position: fixed;
+  right: 0;
+  bottom: -100vh;
+  left: 0;
+  height: 100vh;
+  touch-action: none;
+  z-index: 1032;
+  background-color: #fff;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  overflow: hidden;
+
+  &__content {
+    overflow: hidden;
+    display: flex;
+    touch-action: none;
+    flex-direction: column;
+    max-height: 100vh;
+  }
+
+  &__header {
+    cursor: pointer;
+    touch-action: none;
+    flex-shrink: 0;
+    background-color: #f7f7f7;
+    height: 40px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 4px;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: #e1e1e1;
+      border-radius: 2px;
+    }
+  }
+
+  &__body {
+    overflow: auto;
+    flex: 1;
+    position: relative;
+  }
+}

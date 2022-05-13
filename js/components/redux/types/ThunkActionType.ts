@@ -1,17 +1,10 @@
-import { History } from 'history';
 import { ThunkAction as ThunkActionBase } from 'redux-thunk';
-import { NetworkService } from '../../network-service';
+import { ThunkActionExtraArgumentType } from './ThunkActionExtraArgumentType';
 
-type ExtraArgument = {
-  networkService: NetworkService,
-  history: History;
-};
-
-type ThunkActionType<S extends object, R = Promise<any> | void> = ThunkActionBase<
-  R,
-  S,
-  ExtraArgument,
-  any
->;
+type ThunkActionType<
+  State extends object,
+  ExtraThunkArg = ThunkActionExtraArgumentType,
+  ReturnType = Promise<any> | void,
+> = ThunkActionBase<ReturnType, State, ExtraThunkArg, any>;
 
 export { ThunkActionType };

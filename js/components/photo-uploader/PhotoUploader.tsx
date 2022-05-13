@@ -7,7 +7,7 @@ import { Photo } from './Photo';
 import { UploadSuccessType } from './types/UploadSuccessType';
 import { RemoveSuccessType } from './types/RemoveSuccessType';
 import { ChangeInfoSuccessType } from './types/ChangeInfoSuccessType';
-import { networkServiceWrapper } from '../network-service/NetworkServiceWrapper';
+import { useNetworkService } from '../network-service';
 
 type PropTypes = {
   btnText: string;
@@ -26,6 +26,7 @@ const PhotoUploader: React.FC<PropTypes> = ({
   photos,
   onUpdatePhotoIds,
 }) => {
+  const networkService = useNetworkService();
   const [photoList, setPhotoList] = useState<PhotoType[]>(photos);
   const [isProcess, setIsProcess] = useState<boolean>(false);
 
@@ -37,7 +38,6 @@ const PhotoUploader: React.FC<PropTypes> = ({
   }, [photoList]);
 
   const handlerClickRemove = (id: number) => new Promise<void>((resolve, reject) => {
-    const networkService = networkServiceWrapper.getNetworkService();
     let promise: Promise<RemoveSuccessType>;
     if (networkService) {
       promise = networkService.post<RemoveSuccessType>(urlDelete, {
@@ -72,7 +72,6 @@ const PhotoUploader: React.FC<PropTypes> = ({
   });
 
   const changeInfo = (id: number, name: string, isChecked: boolean) => new Promise<void>((resolve, reject) => {
-    const networkService = networkServiceWrapper.getNetworkService();
     let promise: Promise<ChangeInfoSuccessType>;
     if (networkService) {
       promise = networkService.post<RemoveSuccessType>(urlChangeInfo, {
@@ -131,7 +130,6 @@ const PhotoUploader: React.FC<PropTypes> = ({
     Array.from(files).forEach((file: Blob) => {
       const formData = new FormData();
       formData.append('file', file);
-      const networkService = networkServiceWrapper.getNetworkService();
       let promise: Promise<UploadSuccessType>;
       if (networkService) {
         promise = networkService.post<UploadSuccessType>(urlUpload, formData).then((response) => response.data);

@@ -6,6 +6,8 @@ import { ConfigType } from './types/ConfigType';
 import { ResponseErrorType } from './types/ResponseErrorType';
 import { ResponseType } from './types/ResponseType';
 import { NetworkService } from './NetworkService';
+import { NetworkServiceInterface } from './NetworkServiceInterface';
+import { useNetworkService } from './use-network-service';
 
 export {
   ApiError,
@@ -16,4 +18,6 @@ export {
   ResponseErrorType,
   ResponseType,
   NetworkService,
+  NetworkServiceInterface,
+  useNetworkService,
 };

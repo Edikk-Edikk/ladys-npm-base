@@ -1,14 +1,22 @@
 import { ApiError } from './errors/ApiError';
 import { isPlainObject } from 'lodash';
 import { ErrorWithRedirect } from './errors/ErrorWithRedirect';
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
+import
+  axios,
+  {
+    AxiosError,
+    AxiosInstance,
+    AxiosRequestConfig,
+    AxiosResponse,
+  } from 'axios';
 import * as qs from 'qs';
 import { ApiErrorUnauthorized } from './errors/ApiErrorUnauthorized';
 import { ConfigType } from './types/ConfigType';
 import { ERROR_MESSAGE_DEFAULT } from '../../constants';
 import { ResponseType } from './types/ResponseType';
+import { NetworkServiceInterface } from './NetworkServiceInterface';
 
-class NetworkService {
+class NetworkService implements NetworkServiceInterface {
   protected readonly axiosInstance: AxiosInstance;
 
   constructor(baseUrl: string, config = {}) {
@@ -39,7 +47,6 @@ class NetworkService {
       return newConfig;
     });
     this.axiosInstance.interceptors.response.use(
-      // @ts-ignore
       (response: AxiosResponse<ResponseType<any>>) => {
         if (!isPlainObject(response.data)) {
           return Promise.reject(new ApiError(ERROR_MESSAGE_DEFAULT, response.data.statusCode));

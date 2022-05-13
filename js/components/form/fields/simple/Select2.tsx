@@ -11,7 +11,7 @@ import 'select2';
 import isEqual from 'lodash/isEqual';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import { Select2PropsType } from '../types/Select2PropsType';
-import { networkServiceWrapper } from '../../../network-service/NetworkServiceWrapper';
+import { useNetworkService } from '../../../network-service';
 
 const Select2 = forwardRef<any, Select2PropsType>(({
   data,
@@ -19,6 +19,7 @@ const Select2 = forwardRef<any, Select2PropsType>(({
   options,
   ...props
 }, ref) => {
+  const networkService = useNetworkService();
   const [currentData] = useState(data);
   const innerRef = createRef<HTMLSelectElement>();
   const [oldOptions, setOldOptions] = useState<object>();
@@ -39,7 +40,7 @@ const Select2 = forwardRef<any, Select2PropsType>(({
   const isAjax = () => 'ajax' in options;
 
   const transport = useCallback((settings, success, failure) => {
-    networkServiceWrapper.getNetworkService().get(settings.url, {
+    networkService.get(settings.url, {
       params: settings.data,
     }).then((response) => {
       success(response.data);

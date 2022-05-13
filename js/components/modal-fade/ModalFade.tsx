@@ -116,7 +116,10 @@ const ModalFade: React.FC<PropsType> = ({
       in={isVisible}
       timeout={300}
       unmountOnExit
-      classNames={modalFadeCss.modalFade}
+      classNames={{
+        enterActive: modalFadeCss.modalFadeEnterActive,
+        exitActive: modalFadeCss.modalFadeExitActive,
+      }}
       onEnter={handlerEnter}
       onExit={handlerExit}
       onExited={handlerExited}

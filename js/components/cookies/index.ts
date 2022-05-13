@@ -1,3 +1,3 @@
-import { cookieWrapper } from './CookiesWrapper';
+import { Cookies } from './Cookies';
 
-export { cookieWrapper };
+export { Cookies };

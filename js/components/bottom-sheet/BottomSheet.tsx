@@ -125,7 +125,7 @@ const BottomSheet: React.FC<PropTypes> = ({
 
   useEffect(() => {
     if (!isVisible) {
-      return null;
+      return undefined;
     }
 
     setHeightLocal(calculateHeight());

@@ -1,0 +1,35 @@
+.modal-flat-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  z-index: 1031;
+  outline: none;
+
+  &-enter-active {
+    animation: modalFlatOverlayShowIn 300ms;
+  }
+
+  &-exit-active {
+    animation: modalFlatOverlayShowOut 300ms;
+  }
+
+  @keyframes modalFlatOverlayShowIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modalFlatOverlayShowOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}

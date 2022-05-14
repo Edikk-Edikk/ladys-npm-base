@@ -6,6 +6,7 @@ export * from './inversify';
 export * from './ladda';
 export * from './loader';
 export * from './modal-fade';
+export * from './modal-flat';
 export * from './network-service';
 export * from './notifier';
 export * from './pagination';

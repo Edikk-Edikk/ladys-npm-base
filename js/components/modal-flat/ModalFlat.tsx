@@ -18,10 +18,22 @@ import classNames from 'classnames';
 
 type PropsType = {
   id: string;
+  onEnter: () => void;
+  onEntering: () => void;
+  onEntered: () => void;
+  onExit: () => void;
+  onExiting: () => void;
+  onExitied: () => void;
 };
 
 const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   id,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
   children,
 }, forwardedRef) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -86,6 +98,10 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   }, []);
 
   const handlerEnter = () => {
+    if (onEnter) {
+      onEnter();
+    }
+
     setId();
 
     document.body.style.height = '100%';
@@ -94,7 +110,35 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
     document.body.style.paddingRight = `${scrollbarWidth()}px`;
   };
 
+  const handlerEntering = () => {
+    if (onEntering) {
+      onEntering();
+    }
+  };
+
+  const handlerEntered = () => {
+    if (onEntered) {
+      onEntered();
+    }
+  };
+
+  const handlerExit = () => {
+    if (onExit) {
+      onExit();
+    }
+  };
+
+  const handlerExiting = () => {
+    if (onExiting) {
+      onExiting();
+    }
+  };
+
   const handlerExited = () => {
+    if (onExited) {
+      onExited();
+    }
+
     removeId();
 
     document.body.style.height = null;
@@ -133,6 +177,10 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
           exitActive: modalFlatCss.modalFlatExitActive,
         }}
         onEnter={handlerEnter}
+        onEntering={handlerEntering}
+        onEntered={handlerEntered}
+        onExit={handlerExit}
+        onExiting={handlerExiting}
         onExited={handlerExited}
       >
         <div className={classNames(modalFlatCss.modalFlat, { 'modal-flat_is-visible': isVisible })}>

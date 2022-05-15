@@ -1,23 +1,24 @@
 import React, {
   forwardRef,
   useCallback, useEffect,
-  useImperativeHandle,
+  useImperativeHandle, useMemo,
   useState,
 } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 import { useHistory } from 'react-router';
+import classNames from 'classnames';
+import { v4 } from 'uuid';
 import { ModalFlatType } from './types';
 import { ModalFlatContextType } from './context';
 import { ModalFlatContext } from './context';
 import { ModalFlatHistoryLocationStateType } from './types';
 import modalFlatCss from './assets/modal-flat.module.scss';
 import modalFlatOverlayCss from './assets/modal-flat-overlay.module.scss';
-import classNames from 'classnames';
 
 type PropsType = {
-  id: string;
+  id?: string;
   onEnter?: () => void;
   onEntering?: () => void;
   onEntered?: () => void;
@@ -36,6 +37,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   onExited,
   children,
 }, forwardedRef) => {
+  const uuid = useMemo(() => id ?? v4(), [id]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const history = useHistory<ModalFlatHistoryLocationStateType>();
 
@@ -55,7 +57,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   useEffect(() => {
     const unListen = history.listen(({ state }) => {
       const modalFlatIds = [...(state?.modalFlatIds || [])];
-      const isIncludes = modalFlatIds.includes(id);
+      const isIncludes = modalFlatIds.includes(uuid);
       if (isIncludes && !isVisible) {
         show();
       } else if (!isIncludes && isVisible) {
@@ -70,11 +72,11 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
 
   const setId = () => {
     const modalFlatIds = [...(history.location.state?.modalFlatIds || [])];
-    if (modalFlatIds.includes(id)) {
+    if (modalFlatIds.includes(uuid)) {
       return;
     }
 
-    modalFlatIds.push(id);
+    modalFlatIds.push(uuid);
     history.push({
       state: {
         ...history.location.state,
@@ -85,7 +87,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
 
   const removeId = () => {
     const modalFlatIds = [...(history.location.state?.modalFlatIds || [])];
-    if (!modalFlatIds.includes(id)) {
+    if (!modalFlatIds.includes(uuid)) {
       return;
     }
 
@@ -151,47 +153,45 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
     hide,
   };
 
-  const renderContent = () => (
-    <ModalFlatContext.Provider value={modalFlatContextValue}>
-      <CSSTransition
-        in={isVisible}
-        timeout={300}
-        unmountOnExit
-        classNames={{
-          enterActive: modalFlatOverlayCss.modalFlatOverlayEnterActive,
-          exitActive: modalFlatOverlayCss.modalFlatOverlayExitActive,
-        }}
-      >
-        <div
-          role="presentation"
-          className={modalFlatOverlayCss.modalFlatOverlay}
-          onClick={handlerClickOnOverlay}
-        />
-      </CSSTransition>
-      <CSSTransition
-        in={isVisible}
-        timeout={300}
-        unmountOnExit
-        classNames={{
-          enterActive: modalFlatCss.modalFlatEnterActive,
-          exitActive: modalFlatCss.modalFlatExitActive,
-        }}
-        onEnter={handlerEnter}
-        onEntering={handlerEntering}
-        onEntered={handlerEntered}
-        onExit={handlerExit}
-        onExiting={handlerExiting}
-        onExited={handlerExited}
-      >
-        <div className={classNames(modalFlatCss.modalFlat, { 'modal-flat_is-visible': isVisible })}>
-          {children}
-        </div>
-      </CSSTransition>
-    </ModalFlatContext.Provider>
-  );
-
   return ReactDOM.createPortal(
-    renderContent(),
+    (
+      <ModalFlatContext.Provider value={modalFlatContextValue}>
+        <CSSTransition
+          in={isVisible}
+          timeout={300}
+          unmountOnExit
+          classNames={{
+            enterActive: modalFlatOverlayCss.modalFlatOverlayEnterActive,
+            exitActive: modalFlatOverlayCss.modalFlatOverlayExitActive,
+          }}
+        >
+          <div
+            role="presentation"
+            className={modalFlatOverlayCss.modalFlatOverlay}
+            onClick={handlerClickOnOverlay}
+          />
+        </CSSTransition>
+        <CSSTransition
+          in={isVisible}
+          timeout={300}
+          unmountOnExit
+          classNames={{
+            enterActive: modalFlatCss.modalFlatEnterActive,
+            exitActive: modalFlatCss.modalFlatExitActive,
+          }}
+          onEnter={handlerEnter}
+          onEntering={handlerEntering}
+          onEntered={handlerEntered}
+          onExit={handlerExit}
+          onExiting={handlerExiting}
+          onExited={handlerExited}
+        >
+          <div className={classNames(modalFlatCss.modalFlat, { 'modal-flat_is-visible': isVisible })}>
+            {children}
+          </div>
+        </CSSTransition>
+      </ModalFlatContext.Provider>
+    ),
     document.body,
   );
 });

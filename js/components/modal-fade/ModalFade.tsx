@@ -1,16 +1,17 @@
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
+import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
 // @ts-ignore
 import modalFadeCss from './modal-fade.module.scss';
 
 type PropsType = {
-  id: string;
+  id?: string;
   isVisible: boolean;
   show: () => void;
   hide: () => void;
@@ -25,12 +26,13 @@ const ModalFade: React.FC<PropsType> = ({
   children,
   close,
 }) => {
+  const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
 
   useEffect(() => {
     const unListen = history.listen(({ state }) => {
       const modalFadeIds = [...(state?.modalFadeIds || [])];
-      const isIncludes = modalFadeIds.includes(id);
+      const isIncludes = modalFadeIds.includes(uuid);
       if (isIncludes && !isVisible) {
         show();
       } else if (!isIncludes && isVisible) {
@@ -45,11 +47,11 @@ const ModalFade: React.FC<PropsType> = ({
 
   const setId = () => {
     const modalFadeIds = [...(history.location.state?.modalFadeIds || [])];
-    if (modalFadeIds.includes(id)) {
+    if (modalFadeIds.includes(uuid)) {
       return;
     }
 
-    modalFadeIds.push(id);
+    modalFadeIds.push(uuid);
     history.push({
       state: {
         ...history.location.state,
@@ -60,7 +62,7 @@ const ModalFade: React.FC<PropsType> = ({
 
   const removeId = () => {
     const modalFadeIds = [...(history.location.state?.modalFadeIds || [])];
-    if (!modalFadeIds.includes(id)) {
+    if (!modalFadeIds.includes(uuid)) {
       return;
     }
 
@@ -111,28 +113,26 @@ const ModalFade: React.FC<PropsType> = ({
     );
   };
 
-  const renderContent = () => (
-    <CSSTransition
-      in={isVisible}
-      timeout={300}
-      unmountOnExit
-      classNames={{
-        enterActive: modalFadeCss.modalFadeEnterActive,
-        exitActive: modalFadeCss.modalFadeExitActive,
-      }}
-      onEnter={handlerEnter}
-      onExit={handlerExit}
-      onExited={handlerExited}
-    >
-      <div className={modalFadeCss.modalFade}>
-        {renderClose()}
-        {children}
-      </div>
-    </CSSTransition>
-  );
-
   return ReactDOM.createPortal(
-    renderContent(),
+    (
+      <CSSTransition
+        in={isVisible}
+        timeout={300}
+        unmountOnExit
+        classNames={{
+          enterActive: modalFadeCss.modalFadeEnterActive,
+          exitActive: modalFadeCss.modalFadeExitActive,
+        }}
+        onEnter={handlerEnter}
+        onExit={handlerExit}
+        onExited={handlerExited}
+      >
+        <div className={modalFadeCss.modalFade}>
+          {renderClose()}
+          {children}
+        </div>
+      </CSSTransition>
+    ),
     document.body,
   );
 };

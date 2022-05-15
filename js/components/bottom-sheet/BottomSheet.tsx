@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import React, {
   useCallback,
-  useEffect,
+  useEffect, useMemo,
   useRef,
   useState,
 } from 'react';
@@ -9,12 +9,13 @@ import { useDrag } from '@use-gesture/react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
+import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
 // @ts-ignore
 import bottomSheetCss from './bottom-sheet.module.scss';
 
 type PropTypes = {
-  id: string;
+  id?: string;
   isVisible: boolean;
   show: () => void;
   hide: () => void;
@@ -41,6 +42,7 @@ const BottomSheet: React.FC<PropTypes> = ({
   bodyAdditionalClassName,
   isFullHeight,
 }) => {
+  const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -55,7 +57,7 @@ const BottomSheet: React.FC<PropTypes> = ({
   useEffect(() => {
     const unListen = history.listen(({ state }) => {
       const bottomSheetIds = [...(state?.bottomSheetIds || [])];
-      const isIncludes = bottomSheetIds.includes(id);
+      const isIncludes = bottomSheetIds.includes(uuid);
       if (isIncludes && !isVisible) {
         show();
       } else if (!isIncludes && isVisible) {
@@ -70,11 +72,11 @@ const BottomSheet: React.FC<PropTypes> = ({
 
   const setId = () => {
     const bottomSheetIds = [...(history.location.state?.bottomSheetIds || [])];
-    if (bottomSheetIds.includes(id)) {
+    if (bottomSheetIds.includes(uuid)) {
       return;
     }
 
-    bottomSheetIds.push(id);
+    bottomSheetIds.push(uuid);
     history.push({
       state: {
         ...history.location.state,
@@ -85,7 +87,7 @@ const BottomSheet: React.FC<PropTypes> = ({
 
   const removeId = () => {
     const bottomSheetIds = [...(history.location.state?.bottomSheetIds || [])];
-    if (!bottomSheetIds.includes(id)) {
+    if (!bottomSheetIds.includes(uuid)) {
       return;
     }
 
@@ -246,22 +248,6 @@ const BottomSheet: React.FC<PropTypes> = ({
     },
   );
 
-  const renderOverlay = () => (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className={bottomSheetCss.bottomSheetOverlay}
-          onClick={() => {
-            hide();
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        />
-      )}
-    </AnimatePresence>
-  );
-
   if (!isMounted) {
     return null;
   }
@@ -269,8 +255,20 @@ const BottomSheet: React.FC<PropTypes> = ({
   // noinspection TypeScriptValidateTypes
   return ReactDOM.createPortal(
     (
-      <div id={id}>
-        {renderOverlay()}
+      <>
+        <AnimatePresence>
+          {isVisible && (
+            <motion.div
+              className={bottomSheetCss.bottomSheetOverlay}
+              onClick={() => {
+                hide();
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+          )}
+        </AnimatePresence>
         <motion.div
           ref={refSheet}
           className={classNames(bottomSheetCss.bottomSheet, additionalClassName)}
@@ -283,7 +281,7 @@ const BottomSheet: React.FC<PropTypes> = ({
             </div>
           </div>
         </motion.div>
-      </div>
+      </>
     ),
     document.body,
   );

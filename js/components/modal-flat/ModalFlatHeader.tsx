@@ -3,9 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useModalFlatContext } from './hooks';
 import modalFlatHeaderCss from './assets/modal-flat-header.module.scss';
+import classNames from 'classnames';
 
-const ModalFlatHeader: FC = ({
+type PropsType = {
+  additionalClassName?: string;
+};
+
+const ModalFlatHeader: FC<PropsType> = ({
   children,
+  additionalClassName,
 }) => {
   const { hide } = useModalFlatContext();
 
@@ -14,7 +20,7 @@ const ModalFlatHeader: FC = ({
   };
 
   return (
-    <div className={modalFlatHeaderCss.modalFlatHeader}>
+    <div className={classNames(modalFlatHeaderCss.modalFlatHeader, additionalClassName)}>
       <div className={modalFlatHeaderCss.modalFlatHeader__content}>
         {children}
       </div>

@@ -14,6 +14,7 @@ import { ModalFlatContext } from './context';
 import { ModalFlatHistoryLocationStateType } from './types';
 import modalFlatCss from './assets/modal-flat.module.scss';
 import modalFlatOverlayCss from './assets/modal-flat-overlay.module.scss';
+import classNames from 'classnames';
 
 type PropsType = {
   id: string;
@@ -23,7 +24,6 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   id,
   children,
 }, forwardedRef) => {
-  globalThis.console.log(id);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const history = useHistory<ModalFlatHistoryLocationStateType>();
 
@@ -135,7 +135,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
         onEnter={handlerEnter}
         onExited={handlerExited}
       >
-        <div className={modalFlatCss.modalFlat}>
+        <div className={classNames(modalFlatCss.modalFlat, { 'modal-flat_is-visible': isVisible })}>
           {children}
         </div>
       </CSSTransition>

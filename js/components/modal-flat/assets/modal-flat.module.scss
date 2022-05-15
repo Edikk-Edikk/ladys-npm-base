@@ -6,7 +6,7 @@
   z-index: 1031;
   background-color: transparent;
   max-height: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
   padding-top: 0;
@@ -20,12 +20,17 @@
     height: initial;
   }
 
+  &_is-visible {
+    display: flex;
+  }
+
   &-enter-active {
     animation: modalFlatShowIn 300ms;
   }
 
   &-exit-active {
     animation: modalFlatShowOut 300ms;
+    display: flex;
   }
 
   &__header {

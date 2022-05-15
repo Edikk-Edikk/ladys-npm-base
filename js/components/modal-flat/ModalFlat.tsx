@@ -18,12 +18,12 @@ import classNames from 'classnames';
 
 type PropsType = {
   id: string;
-  onEnter: () => void;
-  onEntering: () => void;
-  onEntered: () => void;
-  onExit: () => void;
-  onExiting: () => void;
-  onExited: () => void;
+  onEnter?: () => void;
+  onEntering?: () => void;
+  onEntered?: () => void;
+  onExit?: () => void;
+  onExiting?: () => void;
+  onExited?: () => void;
 };
 
 const ModalFlat = forwardRef<ModalFlatType, PropsType>(({

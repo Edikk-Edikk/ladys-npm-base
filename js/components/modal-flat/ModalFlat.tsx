@@ -23,7 +23,7 @@ type PropsType = {
   onEntered: () => void;
   onExit: () => void;
   onExiting: () => void;
-  onExitied: () => void;
+  onExited: () => void;
 };
 
 const ModalFlat = forwardRef<ModalFlatType, PropsType>(({

@@ -1,7 +1,7 @@
 import React, {
-  forwardRef,
+  forwardRef, MutableRefObject,
   useCallback, useEffect,
-  useImperativeHandle, useMemo,
+  useImperativeHandle, useMemo, useRef,
   useState,
 } from 'react';
 import ReactDOM from 'react-dom';
@@ -17,6 +17,7 @@ import { ModalFlatHistoryLocationStateType } from './types';
 import modalFlatCss from './assets/modal-flat.module.scss';
 import modalFlatOverlayCss from './assets/modal-flat-overlay.module.scss';
 import { ModalFlatDialog } from './ModalFlatDialog';
+import { Subject, Subscription } from 'rxjs';
 
 type PropsType = {
   id?: string;
@@ -41,13 +42,20 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   const uuid = useMemo(() => id ?? v4(), [id]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const history = useHistory<ModalFlatHistoryLocationStateType>();
+  const refHideSubject: MutableRefObject<Subject<void>> = useRef(new Subject<void>());
 
   const show = () => {
     setIsVisible(true);
   };
 
-  const hide = () => {
+  const hide = (): Promise<void> => {
     setIsVisible(false);
+    return new Promise((resolve) => {
+      const subscription: Subscription = refHideSubject.current.subscribe(() => {
+        resolve();
+        subscription.unsubscribe();
+      });
+    });
   };
 
   useImperativeHandle<ModalFlatType, ModalFlatType>(forwardedRef, () => ({
@@ -62,7 +70,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
       if (isIncludes && !isVisible) {
         show();
       } else if (!isIncludes && isVisible) {
-        hide();
+        hide().then();
       }
     });
 
@@ -97,7 +105,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
 
   const handlerClickOnOverlay = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    hide();
+    hide().then();
   }, []);
 
   const handlerEnter = () => {
@@ -148,6 +156,8 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
     document.body.style.overflow = null;
     document.body.style.position = null;
     document.body.style.paddingRight = null;
+
+    refHideSubject.current.next();
   };
 
   const modalFlatContextValue: ModalFlatContextType = {

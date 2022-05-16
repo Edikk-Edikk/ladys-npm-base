@@ -1,6 +1,6 @@
 type ModalFlatType = {
   show: () => void;
-  hide: () => void;
+  hide: () => Promise<void>;
 };
 
 export { ModalFlatType };

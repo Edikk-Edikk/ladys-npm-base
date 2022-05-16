@@ -2,6 +2,7 @@ export * from './bottom-sheet';
 export * from './context-menu';
 export * from './cookies';
 export * from './form';
+export * from './image-uploader';
 export * from './inversify';
 export * from './ladda';
 export * from './loader';

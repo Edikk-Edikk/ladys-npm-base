@@ -1,6 +1,6 @@
 {
   "name": "ladys-npm-base",
-  "version": "0.0.71",
+  "version": "0.0.72",
   "main": "dist/js/index.js",
   "scripts": {
     "check-types": "tsc --noEmit",

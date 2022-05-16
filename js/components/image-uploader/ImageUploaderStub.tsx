@@ -1,4 +1,4 @@
-import imageUploaderStubCss from 'reactComponents/stories/components/stories-form/image-uploader-stub.module.scss';
+import imageUploaderStubCss from './assets/image-uploader-stub.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import React, { VFC } from 'react';

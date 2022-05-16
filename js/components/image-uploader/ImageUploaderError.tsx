@@ -1,6 +1,6 @@
 import { useFormState } from 'react-final-form';
 import get from 'lodash/get';
-import imageUploaderCss from 'reactComponents/stories/components/stories-form/image-uploader.module.scss';
+import imageUploaderCss from './assets/image-uploader.module.scss';
 import React, { VFC } from 'react';
 
 type PropsType = {

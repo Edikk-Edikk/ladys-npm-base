@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import imageUploaderCss from 'reactComponents/stories/components/stories-form/image-uploader.module.scss';
+import imageUploaderCss from './assets/image-uploader.module.scss';
 
 type PropsType = {
   preview: string;

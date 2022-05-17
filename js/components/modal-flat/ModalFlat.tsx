@@ -27,9 +27,11 @@ type PropsType = {
   onExit?: () => void;
   onExiting?: () => void;
   onExited?: () => void;
+  additionalClassName?: string;
 };
 
 const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
+  children,
   id,
   onEnter,
   onEntering,
@@ -37,7 +39,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   onExit,
   onExiting,
   onExited,
-  children,
+  additionalClassName,
 }, forwardedRef) => {
   const uuid = useMemo(() => id ?? v4(), [id]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -197,7 +199,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
           onExiting={handlerExiting}
           onExited={handlerExited}
         >
-          <div className={classNames(modalFlatCss.modalFlat, { 'modal-flat_is-visible': isVisible })}>
+          <div className={classNames(modalFlatCss.modalFlat, additionalClassName, { 'modal-flat_is-visible': isVisible })}>
             <ModalFlatDialog>
               {children}
             </ModalFlatDialog>

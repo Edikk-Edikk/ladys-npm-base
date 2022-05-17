@@ -21,7 +21,11 @@
   }
 
   &__input {
-    display: none;
+    @at-root {
+      input#{&} {
+        display: none;
+      }
+    }
   }
 
   &__preview {

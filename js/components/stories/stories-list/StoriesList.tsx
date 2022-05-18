@@ -16,8 +16,8 @@ import { StoriesType } from '../types';
 type PropsType = {
   isInit: boolean;
   items: StoriesType[];
-  firstElement: ReactElement;
   onClickOnStories: (id: number, ref: MutableRefObject<HTMLDivElement>) => void;
+  firstElement?: ReactElement;
   rows?: number;
   processedIds?: number[];
 };
@@ -25,8 +25,8 @@ type PropsType = {
 const StoriesList: VFC<PropsType> = ({
   isInit,
   items,
-  firstElement,
   onClickOnStories,
+  firstElement,
   rows = 1,
   processedIds = [],
 }) => {

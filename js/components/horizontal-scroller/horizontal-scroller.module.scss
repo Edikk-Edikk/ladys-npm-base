@@ -1,0 +1,11 @@
+.horizontal-scroller {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+
+  &__inner {
+    display: flex;
+    touch-action: none;
+    flex-grow: 1;
+  }
+}

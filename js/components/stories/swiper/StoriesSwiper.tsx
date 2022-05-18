@@ -6,11 +6,10 @@ import React, {
   VFC,
 } from 'react';
 import 'swiper/swiper.min.css';
-import { Swiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { StoriesSwiperNavigationPrev } from './StoriesSwiperNavigationPrev';
 import { StoriesSwiperNavigationNext } from './StoriesSwiperNavigationNext';
 import { Timeline } from './Timeline';
-// @ts-ignore
 import storiesSwiperCss from './assets/stories-swiper.module.scss';
 
 type PropsType = {
@@ -92,9 +91,15 @@ const StoriesSwiper: VFC<PropsType> = ({
     stopProgressInterval();
   }, []);
 
+  const storiesList = stories.map((storiesItem , index) => (
+    <SwiperSlide key={`stories-${index}`}>
+      {storiesItem}
+    </SwiperSlide>
+  ));
+
   return (
     <div className={storiesSwiperCss.storiesSwiperHolder}>
-      <Timeline duration={duration} currentSlide={currentSlide} stories={stories} progress={progress} />
+      <Timeline duration={duration} currentSlide={currentSlide} stories={storiesList} progress={progress} />
       <Swiper
         className={storiesSwiperCss.storiesSwiper}
         initialSlide={initialSlide}
@@ -108,7 +113,7 @@ const StoriesSwiper: VFC<PropsType> = ({
       >
         <StoriesSwiperNavigationPrev swiper={refSwiper.current} />
         <StoriesSwiperNavigationNext swiper={refSwiper.current} />
-        {stories}
+        {storiesList}
       </Swiper>
     </div>
   );

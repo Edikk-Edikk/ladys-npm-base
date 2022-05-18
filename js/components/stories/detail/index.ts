@@ -1,3 +1,3 @@
-import { StoryDetail } from './StoryDetail';
+import { StoriesDetail } from './StoriesDetail';
 
-export { StoryDetail };
+export { StoriesDetail };

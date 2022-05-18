@@ -1,6 +1,6 @@
 import React, { ReactElement, VFC } from 'react';
 import { StoriesType } from '../types';
-import { StoryDetail } from '../detail';
+import { StoriesDetail } from '../detail';
 import { ModalFade } from '../../modal-fade';
 import { StoriesSwiper } from '../swiper';
 
@@ -22,7 +22,7 @@ const StoriesDetailList: VFC<PropsType> = ({
   renderActions,
 }) => {
   const storiesList = stories.map((item) => (
-    <StoryDetail
+    <StoriesDetail
       id={item.id}
       photo={item.photo}
       description={item.description}

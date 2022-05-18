@@ -7,7 +7,7 @@ type PropsType = Pick<StoriesType, 'id' | 'photo' | 'description' | 'time'> & {
   renderActions: (id: number) => ReactElement;
 };
 
-const StoryDetail: VFC<PropsType> = ({
+const StoriesDetail: VFC<PropsType> = ({
   id,
   photo,
   description,
@@ -45,4 +45,4 @@ const StoryDetail: VFC<PropsType> = ({
   );
 };
 
-export { StoryDetail };
+export { StoriesDetail };

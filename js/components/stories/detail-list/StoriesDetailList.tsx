@@ -1,6 +1,6 @@
 import React, { ReactElement, VFC } from 'react';
 import { StoriesType } from '../types';
-import { StoryDetail } from '../detail/StoryDetail';
+import { StoryDetail } from '../detail';
 import { ModalFade } from '../../modal-fade';
 import { StoriesSwiper } from '../swiper';
 

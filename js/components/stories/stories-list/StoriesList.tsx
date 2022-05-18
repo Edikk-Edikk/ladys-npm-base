@@ -3,7 +3,6 @@ import React, {
   MutableRefObject,
   ReactElement,
   useEffect,
-  useMemo,
   useState,
   VFC,
 } from 'react';
@@ -31,13 +30,8 @@ const StoriesList: VFC<PropsType> = ({
   processedIds = [],
 }) => {
   const [itemsRefList, setItemsRefList] = useState<MutableRefObject<HTMLDivElement>[]>([]);
-  const availableRows = useMemo(() => (items.length > 10 ? rows : 1), [items.length]);
 
   useEffect(() => {
-    if (!items) {
-      return;
-    }
-
     setItemsRefList((elRefs) => (
       Array(items.length).fill(null).map((_, i) => elRefs[i] || createRef())
     ));
@@ -75,7 +69,7 @@ const StoriesList: VFC<PropsType> = ({
     );
   }
 
-  const storiesColumnList = chunk(storiesList, availableRows).map((storiesChunk, storiesChunkIndex) => {
+  const storiesColumnList = chunk(storiesList, rows).map((storiesChunk, storiesChunkIndex) => {
     const stories = storiesChunk.map((storiesChunkItem, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <div key={`stories-chunk-item-${index}`}>

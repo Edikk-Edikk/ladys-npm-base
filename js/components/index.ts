@@ -14,5 +14,6 @@ export * from './notifier';
 export * from './pagination';
 export * from './photo-uploader';
 export * from './redux';
+export * from './stories';
 export * from './sweetAlert';
 export { history } from './history';

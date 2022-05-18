@@ -1,0 +1,101 @@
+import React, {
+  createRef,
+  MutableRefObject,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useState,
+  VFC,
+} from 'react';
+import chunk from 'lodash/chunk';
+import storiesListCss from './asssets/stories-list.module.scss';
+import { Stories, StoriesPlaceholder } from '../stories';
+import { HorizontalScroller } from '../../horizontal-scroller';
+import { StoriesType } from '../types';
+
+type PropsType = {
+  isInit: boolean;
+  items: StoriesType[];
+  firstElement: ReactElement;
+  onClickOnStories: (id: number, ref: MutableRefObject<HTMLDivElement>) => void;
+  rows?: number;
+  processedIds?: number[];
+};
+
+const StoriesList: VFC<PropsType> = ({
+  isInit,
+  items,
+  firstElement,
+  onClickOnStories,
+  rows = 1,
+  processedIds = [],
+}) => {
+  const [itemsRefList, setItemsRefList] = useState<MutableRefObject<HTMLDivElement>[]>([]);
+  const availableRows = useMemo(() => (items.length > 10 ? rows : 1), [items.length]);
+
+  useEffect(() => {
+    if (!items) {
+      return;
+    }
+
+    setItemsRefList((elRefs) => (
+      Array(items.length).fill(null).map((_, i) => elRefs[i] || createRef())
+    ));
+  }, [items.length]);
+
+  const storiesList = [];
+  if (isInit) {
+    if (firstElement) {
+      storiesList.push(firstElement);
+    }
+    items.forEach((item, index) => {
+      storiesList.push((
+        <Stories
+          ref={itemsRefList[index]}
+          id={item.id}
+          photo={item.photo}
+          time={item.time}
+          onClick={() => {
+            onClickOnStories(item.id, itemsRefList[index]);
+          }}
+          isProcess={processedIds.includes(item.id)}
+        />
+      ));
+    });
+  } else {
+    storiesList.push(
+      <div key={1}><StoriesPlaceholder /></div>,
+      <div key={2}><StoriesPlaceholder /></div>,
+      <div key={3}><StoriesPlaceholder /></div>,
+      <div key={4}><StoriesPlaceholder /></div>,
+      <div key={5}><StoriesPlaceholder /></div>,
+      <div key={6}><StoriesPlaceholder /></div>,
+      <div key={7}><StoriesPlaceholder /></div>,
+      <div key={8}><StoriesPlaceholder /></div>,
+    );
+  }
+
+  const storiesColumnList = chunk(storiesList, availableRows).map((storiesChunk, storiesChunkIndex) => {
+    const stories = storiesChunk.map((storiesChunkItem, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <div key={`stories-chunk-item-${index}`}>
+        {storiesChunkItem}
+      </div>
+    ));
+
+    return (
+      // eslint-disable-next-line react/no-array-index-key
+      <div key={`stories-chunk-${storiesChunkIndex}`} className={storiesListCss.storiesList__column}>
+        {stories}
+      </div>
+    );
+  });
+
+  return (
+    <HorizontalScroller>
+      {storiesColumnList}
+    </HorizontalScroller>
+  );
+};
+
+export { StoriesList };

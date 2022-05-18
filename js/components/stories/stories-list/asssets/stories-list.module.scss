@@ -1,0 +1,7 @@
+.stories-list {
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

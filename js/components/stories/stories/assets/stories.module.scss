@@ -1,0 +1,73 @@
+.stories {
+  padding: 0 0.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  &_is-process {
+    cursor: default;
+  }
+
+  &__content {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #f2b3b8;
+    line-height: normal;
+    font-size: 0.8rem;
+    font-weight: bold;
+    white-space: initial;
+
+    &_border-green {
+      border-color: #198754;
+    }
+
+    &_border-none {
+      border: none;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    border-radius: 50%;
+  }
+
+  &__footer {
+    margin-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+    white-space: nowrap;
+
+    &_border-none {
+      border: none;
+    }
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    color: #6c757d;
+
+    &_danger {
+      color: #dc3545;
+    }
+
+    &_bold {
+      font-weight: bold;
+    }
+  }
+
+  &__process-indicator {
+    font-size: 2rem;
+  }
+}

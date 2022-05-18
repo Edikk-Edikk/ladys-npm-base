@@ -37,6 +37,7 @@
     "react-bootstrap": "^2.3.1",
     "react-cool-onclickoutside": "^1.7.0",
     "react-if": "^4.1.4",
+    "react-loading-skeleton": "^3.1.0",
     "react-popper": "^2.3.0",
     "react-redux": "^7.2.2",
     "react-transition-group": "^4.4.2",

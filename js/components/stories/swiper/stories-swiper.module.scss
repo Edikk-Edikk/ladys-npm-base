@@ -1,0 +1,32 @@
+.stories-swiper-holder {
+  height: 100%;
+}
+
+.stories-swiper {
+  height: 100%;
+
+  &__navigation {
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,.7);
+    border-radius: 50%;
+    width: 51px;
+    height: 51px;
+    z-index: 1;
+    font-size: 2rem;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_prev {
+      left: 25px;
+    }
+
+    &_next {
+      right: 25px;
+    }
+  }
+}

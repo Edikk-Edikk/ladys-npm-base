@@ -11,7 +11,7 @@ import { StoriesSwiperNavigationPrev } from './StoriesSwiperNavigationPrev';
 import { StoriesSwiperNavigationNext } from './StoriesSwiperNavigationNext';
 import { Timeline } from './Timeline';
 // @ts-ignore
-import storiesSwiperCss from './stories-swiper.module.scss';
+import storiesSwiperCss from './assets/stories-swiper.module.scss';
 
 type PropsType = {
   stories: ReactElement[];

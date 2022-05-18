@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 // @ts-ignore
-import storiesSwiperCss from './stories-swiper.module.scss';
+import storiesSwiperCss from './assets/stories-swiper.module.scss';
 
 const StoriesSwiperNavigationPrev = ({ swiper }) => {
   const handlerClick = () => {

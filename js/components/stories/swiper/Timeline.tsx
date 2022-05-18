@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { ReactElement, VFC } from 'react';
 // @ts-ignore
-import storiesTimelineCss from './stories-timeline.module.scss';
+import storiesTimelineCss from './assets/stories-timeline.module.scss';
 
 type PropsType = {
   stories: ReactElement[];

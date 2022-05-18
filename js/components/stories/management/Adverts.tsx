@@ -2,7 +2,7 @@ import React, { VFC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Advert } from './Advert';
 // @ts-ignore
-import storiesManagementCss from './stories-management.module.scss';
+import storiesManagementCss from './assets/stories-management.module.scss';
 import { StoriesManagementAdvertType } from '../types';
 
 type PropsType = {

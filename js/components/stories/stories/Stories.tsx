@@ -4,11 +4,9 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Else, If, Then } from 'react-if';
 import classNames from 'classnames';
 import storiesCss from './assets/stories.module.scss';
+import { StoriesType } from '../types';
 
-type PropsType = {
-  id: number;
-  photo: string;
-  time: string;
+type PropsType = Pick<StoriesType, 'id' | 'photo' | 'time'> & {
   onClick: () => void;
   isProcess?: boolean;
 };

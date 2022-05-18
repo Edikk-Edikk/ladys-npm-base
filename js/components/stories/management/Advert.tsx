@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
 // @ts-ignore
-import storiesManagementCss from './stories-management.module.scss';
+import storiesManagementCss from './assets/stories-management.module.scss';
 import { StoriesManagementAdvertType } from '../types';
 
 type PropsType = Pick<StoriesManagementAdvertType, 'photo' | 'name' | 'description'> & {

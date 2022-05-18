@@ -29,6 +29,7 @@
     "flux-standard-action": "^2.1.2",
     "framer-motion": "^3.10.6",
     "history": "^4.10.1",
+    "html-react-parser": "^1.4.12",
     "inputmask": "^5.0.7",
     "inversify": "^6.0.1",
     "ladda": "^2.0.3",

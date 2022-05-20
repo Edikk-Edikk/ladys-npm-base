@@ -113,6 +113,10 @@ const ModalFade: React.FC<PropsType> = ({
     );
   };
 
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
   return ReactDOM.createPortal(
     (
       <CSSTransition

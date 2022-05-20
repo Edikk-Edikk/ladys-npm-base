@@ -1,4 +1,6 @@
 .stories-list {
+  gap: 0.5rem;
+
   &__column {
     display: flex;
     flex-direction: column;

@@ -6,13 +6,16 @@ import React, {
 } from 'react';
 import { motion } from 'framer-motion';
 import horizontalScrollerCss from './horizontal-scroller.module.scss';
+import classNames from 'classnames';
 
 type PropsType = {
   children: ReactElement[];
+  innerAdditionalClassName: string;
 };
 
 const HorizontalScroller: React.FC<PropsType> = ({
   children,
+  innerAdditionalClassName,
 }) => {
   const refContainer = useRef<HTMLDivElement>();
   const refInner = useRef<HTMLDivElement>();
@@ -41,7 +44,7 @@ const HorizontalScroller: React.FC<PropsType> = ({
     <div ref={refContainer} className={horizontalScrollerCss.horizontalScroller}>
       <motion.div
         ref={refInner}
-        className={horizontalScrollerCss.horizontalScroller__inner}
+        className={classNames(horizontalScrollerCss.horizontalScroller__inner, innerAdditionalClassName)}
         drag="x"
         dragTransition={{
           min: -innerWidth + containerWidth,

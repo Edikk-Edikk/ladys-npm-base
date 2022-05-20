@@ -86,7 +86,7 @@ const StoriesList: VFC<PropsType> = ({
   });
 
   return (
-    <HorizontalScroller>
+    <HorizontalScroller innerAdditionalClassName={storiesListCss.storiesList}>
       {storiesColumnList}
     </HorizontalScroller>
   );

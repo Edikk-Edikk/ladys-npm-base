@@ -199,7 +199,13 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
           onExiting={handlerExiting}
           onExited={handlerExited}
         >
-          <div className={classNames(modalFlatCss.modalFlat, additionalClassName, { 'modal-flat_is-visible': isVisible })}>
+          <div
+            className={classNames(
+              modalFlatCss.modalFlat,
+              { [modalFlatCss.modalFlat_isVisible]: isVisible },
+              additionalClassName,
+            )}
+          >
             <ModalFlatDialog>
               {children}
             </ModalFlatDialog>

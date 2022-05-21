@@ -3,22 +3,20 @@
   width: 100%;
   height: 100%;
   padding: 4rem 1rem 2rem;
+  background-color: #fff;
 
   &__photo {
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 50%;
+    left: 0;
+    right: 0;
     height: 100%;
-    transform: translate(50%, 0);
+    width: 100%;
+    object-fit: contain;
 
     @media (max-width: 991px) {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      left: 0;
-      right: 0;
-      transform: none;
+      object-position: center;
     }
   }
 

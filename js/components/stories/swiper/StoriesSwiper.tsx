@@ -26,58 +26,58 @@ const StoriesSwiper: VFC<PropsType> = ({
   const [currentSlide, setCurrentSlide] = useState<number>(initialSlide);
   const [progress, setProgress] = useState<number>(0);
   const refSwiper = useRef(null);
-  let changeTimerId;
-  let progressIntervalId;
-  let progressLocal = 0;
-  let isPause = false;
+  const refProgressIntervalId = useRef<NodeJS.Timer | number | null>(null);
+  const refChangeTimerId = useRef<NodeJS.Timer | number | null>(null);
+  const refIsPause = useRef<boolean>(false);
+  const refProgress = useRef<number>(0);
 
   const stopProgressInterval = (clearProgress = true) => {
-    if (progressIntervalId) {
-      clearTimeout(progressIntervalId);
+    if (refProgressIntervalId.current) {
+      clearTimeout(refProgressIntervalId.current as number);
       if (clearProgress) {
         setProgress(0);
-        progressLocal = 0;
+        refProgress.current = 0;
       }
     }
   };
 
   const startProgressInterval = (clearProgress = true) => {
     stopProgressInterval(clearProgress);
-    progressIntervalId = setInterval(() => {
+    refProgressIntervalId.current = setInterval(() => {
       setProgress((currentProgress) => {
-        progressLocal = currentProgress + 10;
-        return progressLocal;
+        refProgress.current = currentProgress + 10;
+        return refProgress.current;
       });
     }, 10);
   };
 
   const stopChangeTimer = () => {
-    if (changeTimerId) {
-      clearTimeout(changeTimerId);
+    if (refChangeTimerId.current) {
+      clearTimeout(refChangeTimerId.current as number);
     }
   };
 
   const startChangeTimer = (durationForce = duration) => {
     stopChangeTimer();
-    changeTimerId = setTimeout(() => {
+    refChangeTimerId.current = setTimeout(() => {
       refSwiper.current.slideNext();
     }, durationForce);
   };
 
   const pause = () => {
-    isPause = true;
+    refIsPause.current = true;
     stopProgressInterval(false);
     stopChangeTimer();
   };
 
   const resume = () => {
-    isPause = false;
-    startChangeTimer(duration - progressLocal);
+    refIsPause.current = false;
+    startChangeTimer(duration - refProgress.current);
     startProgressInterval(false);
   };
 
   const handlerSlideChange = (swiper) => {
-    if (isPause) {
+    if (refIsPause.current) {
       return;
     }
 

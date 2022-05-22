@@ -89,6 +89,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
 
     modalFlatIds.push(uuid);
     history.push({
+      ...history.location,
       state: {
         ...history.location.state,
         modalFlatIds,

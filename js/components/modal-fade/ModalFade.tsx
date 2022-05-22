@@ -53,6 +53,7 @@ const ModalFade: React.FC<PropsType> = ({
 
     modalFadeIds.push(uuid);
     history.push({
+      ...history.location,
       state: {
         ...history.location.state,
         modalFadeIds,

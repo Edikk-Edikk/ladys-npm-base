@@ -78,6 +78,7 @@ const BottomSheet: React.FC<PropTypes> = ({
 
     bottomSheetIds.push(uuid);
     history.push({
+      ...history.location,
       state: {
         ...history.location.state,
         bottomSheetIds,

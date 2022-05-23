@@ -1,9 +1,11 @@
 @import "~ladda/dist/ladda-themeless.min.css";
 
 .ladda-button {
-  .ladda-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &[data-style] {
+    .ladda-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

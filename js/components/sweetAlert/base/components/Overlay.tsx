@@ -1,24 +1,21 @@
-import React, { KeyboardEvent } from 'react';
+import React from 'react';
 
 type PropsType = {
   show: boolean;
-  onKeyDown: (e: KeyboardEvent<HTMLDivElement>) => void;
 }
 
 const Overlay: React.FC<PropsType> = ({
   children,
   show,
-  onKeyDown,
 }) => (show ? (
   <div
     role="presentation"
     className="sweet-alert-overlay"
-    onKeyDown={onKeyDown}
   >
     {children}
   </div>
 ) : (
-  <div role="presentation" onKeyDown={(e) => onKeyDown(e)}>
+  <div role="presentation">
     {children}
   </div>
 ));

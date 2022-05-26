@@ -25,7 +25,6 @@ type OptionalPropsType = {
   reverseButtons?: boolean;
   disabled?: boolean;
   closeOnClickOutside?: boolean;
-  allowEscape?: boolean;
   onClose?: () => void;
   onConfirm?: () => void;
   onCancel?: () => void;

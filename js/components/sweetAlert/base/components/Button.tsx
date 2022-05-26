@@ -13,6 +13,7 @@ type PropsType = {
   disabled: boolean;
   onClick: () => void;
   loading: boolean;
+  isEntered: boolean;
 }
 
 const Button: React.FC<PropsType> = ({
@@ -24,6 +25,7 @@ const Button: React.FC<PropsType> = ({
   disabled,
   onClick,
   loading,
+  isEntered,
 }) => {
   if (!isVisible) {
     return null;
@@ -32,10 +34,10 @@ const Button: React.FC<PropsType> = ({
   const ref = useRef<HTMLButtonElement>();
 
   useEffect(() => {
-    if (focus) {
+    if (isEntered && focus) {
       ref.current.focus();
     }
-  }, []);
+  }, [isEntered]);
 
   return (
     <LaddaButton loading={loading} disabled={disabled && !loading}>

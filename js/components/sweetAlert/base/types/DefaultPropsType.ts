@@ -16,7 +16,6 @@ type DefaultPropsType = Pick<OptionalPropsType,
   | 'btnSize'
   | 'reverseButtons'
   | 'disabled'
-  | 'closeOnClickOutside'
-  | 'allowEscape'>
+  | 'closeOnClickOutside'>
 
 export { DefaultPropsType };

@@ -1,4 +1,4 @@
-import React, { ReactNode, useLayoutEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -6,6 +6,7 @@ import { DefaultPropsType } from './types';
 import { TYPE_DEFAULT } from './constants';
 import { PropsType } from './types';
 import { Button, Content, Overlay, Title } from './components';
+import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 
 const defaultProps: DefaultPropsType = {
   type: TYPE_DEFAULT,
@@ -22,7 +23,6 @@ const defaultProps: DefaultPropsType = {
   reverseButtons: false,
   disabled: false,
   closeOnClickOutside: true,
-  allowEscape: true,
 };
 
 const SweetAlertBase: React.FC<PropsType> = ({
@@ -49,7 +49,6 @@ const SweetAlertBase: React.FC<PropsType> = ({
   reverseButtons,
   disabled,
   closeOnClickOutside,
-  allowEscape,
   onClose,
   onConfirm,
   onCancel,
@@ -57,14 +56,7 @@ const SweetAlertBase: React.FC<PropsType> = ({
   onTransitionExited,
 }) => {
   const [isVisibleOverlay, setIsVisibleOverlay] = useState(false);
-
-  useLayoutEffect(() => {
-    document.body.classList.remove('sweetalert-overflow-hidden');
-
-    return () => {
-      document.body.classList.remove('sweetalert-overflow-hidden');
-    };
-  });
+  const [isEntered, setIsEntered] = useState(false);
 
   const getConfirmBtnText = () => confirmBtnText || 'Ok';
 
@@ -88,25 +80,28 @@ const SweetAlertBase: React.FC<PropsType> = ({
     e.stopPropagation();
   };
 
-  const handlerKeyDown = (e) => {
-    if (disabled) {
-      return;
-    }
-
-    if (e.key === 'Escape' && allowEscape) {
-      e.stopPropagation();
-      onClose();
-    }
-  };
-
   const handlerTransitionEnter = () => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${scrollbarWidth()}px`;
+
     setIsVisibleOverlay(true);
     if (onTransitionEnter) {
       onTransitionEnter();
     }
   };
 
+  const handlerTransitionEntered = () => {
+    setIsEntered(true);
+  };
+
+  const handlerTransitionExit = () => {
+    setIsEntered(false);
+  };
+
   const handlerTransitionExited = () => {
+    document.body.style.overflow = null;
+    document.body.style.paddingRight = null;
+
     setIsVisibleOverlay(false);
     if (onTransitionExited) {
       onTransitionExited();
@@ -140,6 +135,7 @@ const SweetAlertBase: React.FC<PropsType> = ({
         disabled={disabled}
         onClick={handlerCancel}
         loading={cancelBtnLoading}
+        isEntered={isEntered}
       />
       <Button
         text={getConfirmBtnText()}
@@ -151,6 +147,7 @@ const SweetAlertBase: React.FC<PropsType> = ({
         disabled={disabled || confirmBtnDisabled}
         onClick={handlerConfirm}
         loading={confirmBtnLoading}
+        isEntered={isEntered}
       />
     </div>
   );
@@ -168,22 +165,20 @@ const SweetAlertBase: React.FC<PropsType> = ({
   };
 
   return (
-    <Overlay
-      show={isVisibleOverlay}
-      onKeyDown={handlerKeyDown}
-    >
+    <Overlay show={isVisibleOverlay}>
       <CSSTransition
         in={show}
         timeout={300}
         unmountOnExit
         classNames="sweet-alert"
         onEnter={handlerTransitionEnter}
+        onEntered={handlerTransitionEntered}
+        onExit={handlerTransitionExit}
         onExited={handlerTransitionExited}
       >
         <div
           ref={ref}
           role="presentation"
-          onKeyDown={handlerKeyDown}
           onClick={handlerClickInside}
           className={`sweet-alert sweet-alert_${type}`}
         >

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StateNotifierType } from '../types';
 import { REDUCER_NOTIFIER_NAME } from '../constants';
 import { Item } from '../components';
+import notifierCss from '../assets/notifier.module.scss';
 
 type PropsType = StateNotifierType;
 
@@ -21,7 +22,7 @@ const Notifier: React.VFC<PropsType> = ({
   ));
 
   return (
-    <div className="notifier">
+    <div className={notifierCss.notifier}>
       {renderItems()}
     </div>
   );

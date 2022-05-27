@@ -1,5 +1,5 @@
 import { ApiError } from './errors/ApiError';
-import { isPlainObject } from 'lodash';
+import isPlainObject from 'lodash/isPlainObject';
 import { ErrorWithRedirect } from './errors/ErrorWithRedirect';
 import
   axios,

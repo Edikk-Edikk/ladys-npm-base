@@ -3,20 +3,19 @@ import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { DefaultPropsType } from './types';
-import { TYPE_DEFAULT } from './constants';
+import { TYPE_DEFAULT, TYPE_ERROR } from './constants';
 import { PropsType } from './types';
 import { Button, Content, Overlay, Title } from './components';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
+import sweetAlertCss from '../assets/sweet-alert.module.scss';
 
 const defaultProps: DefaultPropsType = {
   type: TYPE_DEFAULT,
   showCloseBtn: true,
   confirmBtnVariant: 'primary',
-  confirmBtnClassName: 'min-w-155',
   confirmBtnIsVisible: true,
   confirmBtnFocus: true,
   cancelBtnVariant: 'secondary',
-  cancelBtnClassName: 'min-w-155',
   cancelBtnIsVisible: true,
   cancelBtnFocus: false,
   btnSize: 'lg',
@@ -46,7 +45,6 @@ const SweetAlertBase: React.FC<PropsType> = ({
   cancelBtnFocus,
   cancelBtnLoading,
   btnSize,
-  reverseButtons,
   disabled,
   closeOnClickOutside,
   onClose,
@@ -115,14 +113,14 @@ const SweetAlertBase: React.FC<PropsType> = ({
       return null;
     }
 
-    return <button aria-label="close" type="button" className="sweet-alert__close" onClick={onClose} />;
+    return <button aria-label="close" type="button" className={sweetAlertCss.sweetAlert__close} onClick={onClose} />;
   };
 
   const renderButtons = (): ReactNode => (
     <div
       className={classNames(
-        `sweet-alert__actions sweet-alert__actions_${type}`,
-        { alert__actions_reverse: reverseButtons },
+        sweetAlertCss.sweetAlert__actions,
+        { [sweetAlertCss.sweetAlert__actions_error]: type === TYPE_ERROR }
       )}
     >
       <Button
@@ -158,7 +156,12 @@ const SweetAlertBase: React.FC<PropsType> = ({
     }
 
     return (
-      <div className={`sweet-alert__header sweet-alert__header_${type}`}>
+      <div
+        className={classNames(
+          sweetAlertCss.sweetAlert__header,
+          { [sweetAlertCss.sweetAlert__header_error]: type === TYPE_ERROR }
+        )}
+      >
         <Title variant={type}>{title}</Title>
       </div>
     );
@@ -170,7 +173,10 @@ const SweetAlertBase: React.FC<PropsType> = ({
         in={show}
         timeout={300}
         unmountOnExit
-        classNames="sweet-alert"
+        classNames={{
+          enterActive: sweetAlertCss.sweetAlertEnterActive,
+          exitActive: sweetAlertCss.sweetAlertExitActive,
+        }}
         onEnter={handlerTransitionEnter}
         onEntered={handlerTransitionEntered}
         onExit={handlerTransitionExit}
@@ -180,7 +186,10 @@ const SweetAlertBase: React.FC<PropsType> = ({
           ref={ref}
           role="presentation"
           onClick={handlerClickInside}
-          className={`sweet-alert sweet-alert_${type}`}
+          className={classNames(
+            sweetAlertCss.sweetAlert,
+            { [sweetAlertCss.sweetAlert_error]: type === TYPE_ERROR }
+          )}
         >
           {renderCloseButton()}
           {renderHeader()}

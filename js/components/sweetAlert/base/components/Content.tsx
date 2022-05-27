@@ -1,5 +1,8 @@
 import React from 'react';
 import { SweetAlertVariant } from '../types';
+import classNames from 'classnames';
+import sweetAlertCss from '../../assets/sweet-alert.module.scss';
+import { TYPE_ERROR } from '../constants';
 
 type PropsType = {
   variant: SweetAlertVariant;
@@ -11,7 +14,12 @@ const Content: React.FC<PropsType> = ({ variant, children }) => {
   }
 
   return (
-    <div className={`sweet-alert__content sweet-alert__content_${variant}`}>
+    <div
+      className={classNames(
+        sweetAlertCss.sweetAlert__content,
+        { [sweetAlertCss.sweetAlert__content_error]: variant === TYPE_ERROR }
+      )}
+    >
       {children}
     </div>
   );

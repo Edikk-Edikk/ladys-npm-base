@@ -10,7 +10,7 @@ const queryAppendParam = <R extends string | object>(
   paramName: string,
   paramValue: string | number | string[] | number[] | object,
 ): R => {
-  const newQuery: object = isObject(query) ? { ...query } : queryParse(query);
+  const newQuery: object = typeof query === 'object' ? { ...query } : queryParse(query);
   const existingValue = newQuery[paramName] ?? null;
 
   if (paramName in newQuery && (isObject(existingValue) || isArray(existingValue))) {
@@ -18,7 +18,7 @@ const queryAppendParam = <R extends string | object>(
     if (isPlainObject(paramValue)) {
       newExistingValue = { ...newQuery[paramName], ...paramValue as object };
     } else if (isArray(paramValue)) {
-      newExistingValue = uniq([...newQuery[paramName], ...paramValue]);
+      newExistingValue = uniq([...newQuery[paramName], ...paramValue as []]);
     } else {
       newExistingValue = { ...newQuery[paramName], paramValue };
     }

@@ -1,6 +1,6 @@
 type UserType = {
   id: number;
-  fullName: string;
+  name: string;
 };
 
 export { UserType };

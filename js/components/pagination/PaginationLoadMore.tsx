@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import { LaddaButton } from '../ladda';
 import { PaginationLoadMoreType } from './types';
 

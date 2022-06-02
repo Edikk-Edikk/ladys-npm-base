@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { Button as ButtonBootstrap } from 'react-bootstrap';
-import { ButtonProps } from 'react-bootstrap/Button';
+import ButtonBootstrap, { ButtonProps } from 'react-bootstrap/Button';
 import { LaddaButton } from '../../../ladda';
 
 type PropsType = {

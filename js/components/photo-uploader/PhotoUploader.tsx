@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Else, If, Then } from 'react-if';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+// @ts-ignore
+import SpinnerSvg from '@fortawesome/fontawesome-free/svgs/solid/spinner.svg';
 import { PhotoType} from './types/PhotoType';
 import { Photo } from './Photo';
 import { UploadSuccessType } from './types/UploadSuccessType';
@@ -187,7 +187,7 @@ const PhotoUploader: React.FC<PropTypes> = ({
       <div className="photo-uploader">
         <If condition={isProcess}>
           <Then>
-            <FontAwesomeIcon icon={faSpinner} className="photo-uploader__loader" spin />
+            <SpinnerSvg className='svg-icon svg-icon_spin photo-uploader__loader' />
           </Then>
           <Else>
             <label className="photo-uploader__button">

@@ -2,8 +2,8 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+// @ts-ignore
+import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useHistory } from 'react-router';
 import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
@@ -109,7 +109,7 @@ const ModalFade: React.FC<PropsType> = ({
 
     return (
       <button type="button" className={modalFadeCss.modalFade__close} onClick={handlerClose}>
-        <FontAwesomeIcon icon={faTimes} />
+        <XmarkSvg className="svg-icon" />
       </button>
     );
   };

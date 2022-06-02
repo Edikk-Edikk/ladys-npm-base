@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+// @ts-ignore
+import SpinnerSvg from '@fortawesome/fontawesome-free/svgs/solid/spinner.svg';
 import { Else, If, Then } from 'react-if';
 import classNames from 'classnames';
 import storiesCss from './assets/stories.module.scss';
@@ -44,7 +44,7 @@ const Stories = forwardRef<HTMLDivElement, PropsType>(({
         <If condition={isProcess}>
           <Then>
             <div className={storiesCss.stories__processIndicator}>
-              <FontAwesomeIcon icon={faSpinner} spin />
+              <SpinnerSvg className='svg-icon svg-icon_spin' />
             </div>
           </Then>
           <Else>

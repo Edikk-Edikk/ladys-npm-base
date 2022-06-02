@@ -1,5 +1,6 @@
 import React from 'react';
 import sweetAlertCss from '../../assets/sweet-alert.module.scss';
+import classNames from 'classnames';
 
 type PropsType = {
   show: boolean;
@@ -8,14 +9,10 @@ type PropsType = {
 const Overlay: React.FC<PropsType> = ({
   children,
   show,
-}) => (show ? (
-  <div role="presentation" className={sweetAlertCss.sweetAlertOverlay}>
+}) => (
+  <div role="presentation" className={classNames({ [sweetAlertCss.sweetAlertOverlay]: show })}>
     {children}
   </div>
-) : (
-  <div role="presentation">
-    {children}
-  </div>
-));
+);
 
 export { Overlay };

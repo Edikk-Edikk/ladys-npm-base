@@ -56,7 +56,7 @@ const SweetAlertBase: React.FC<PropsType> = ({
   onTransitionEnter,
   onTransitionExited,
 }) => {
-  const [isVisibleOverlay, setIsVisibleOverlay] = useState(false);
+  const [isVisibleOverlay, setIsVisibleOverlay] = useState(show);
   const [isEntered, setIsEntered] = useState(false);
 
   const getConfirmBtnText = () => confirmBtnText || 'Ok';

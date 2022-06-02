@@ -1,9 +1,9 @@
 import React from 'react';
-import { TYPE_DEFAULT, TYPE_ERROR } from '../base';
+import { TYPE_DEFAULT, TYPE_ERROR } from '../base/constants';
 import { SWEET_ALERT_SHOW, SWEET_ALERT_UPDATE } from '../constants';
 import { ActionWithPayloadType } from '../../redux';
-import { OptionalPropsType } from '../base';
-import { StateSweetAlertType } from '../types';
+import { OptionalPropsType } from '../base/types/OptionalPropsType';
+import { StateSweetAlertType } from '../types/StateSweetAlertType';
 
 const sweetAlertShow = (config: StateSweetAlertType): ActionWithPayloadType<StateSweetAlertType> => ({
   type: SWEET_ALERT_SHOW,

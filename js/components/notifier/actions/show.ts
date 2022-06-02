@@ -1,6 +1,6 @@
-import { ItemType } from '../types';
+import { ItemType } from '../types/ItemType';
 import { FSAWithPayloadType } from '../../redux';
-import { ShowPayloadType } from './types';
+import { ShowPayloadType } from './types/ShowPayloadType';
 import { NOTIFIER_SHOW } from '../constants';
 
 

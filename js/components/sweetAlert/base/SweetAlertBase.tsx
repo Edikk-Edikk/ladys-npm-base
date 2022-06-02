@@ -2,10 +2,13 @@ import React, { ReactNode, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { DefaultPropsType } from './types';
+import { DefaultPropsType } from './types/DefaultPropsType';
 import { TYPE_DEFAULT, TYPE_ERROR } from './constants';
-import { PropsType } from './types';
-import { Button, Content, Overlay, Title } from './components';
+import { PropsType } from './types/PropsType';
+import { Title } from './components/Title';
+import { Overlay } from './components/Overlay';
+import { Content } from './components/Content';
+import { Button } from './components/Button';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 import sweetAlertCss from '../assets/sweet-alert.module.scss';
 

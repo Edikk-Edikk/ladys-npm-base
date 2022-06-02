@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { SweetAlertBase } from '../base';
 import { ActionCreatorsMapObject, bindActionCreators, Dispatch } from 'redux';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { StateSweetAlertType } from '../types';
+import { StateSweetAlertType } from '../types/StateSweetAlertType';
 import { REDUCER_SWEET_ALERT_NAME } from '../constants';
 import { sweetAlertHide, sweetAlertHideComplete } from '../actions/hide';
+import { SweetAlertBase } from '../base/SweetAlertBase';
 
 type DispatchPropsType = {
   hide: () => void,

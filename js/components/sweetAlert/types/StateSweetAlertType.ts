@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { OptionalPropsType } from '../base';
+import { OptionalPropsType } from '../base/types/OptionalPropsType';
 
 type StateSweetAlertType = OptionalPropsType & {
   content?: () => ReactNode,

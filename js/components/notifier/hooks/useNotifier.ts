@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { notifierShow } from '../actions';
-import { notifierHide } from '../actions';
-import { ItemType } from '../types';
+import { notifierShow } from '../actions/show';
+import { notifierHide } from '../actions/hide';
+import { ItemType } from '../types/ItemType';
 
 const useNotifier = () => {
   const dispatch = useDispatch();

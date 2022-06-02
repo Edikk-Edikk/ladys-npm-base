@@ -5,7 +5,7 @@ import {
   SWEET_ALERT_UPDATE,
 } from '../constants';
 import { ActionWithPayloadType } from '../../redux';
-import { StateSweetAlertType } from '../types';
+import { StateSweetAlertType } from '../types/StateSweetAlertType';
 
 const stateDefault = {
   show: false,

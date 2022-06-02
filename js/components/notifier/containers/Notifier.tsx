@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StateNotifierType } from '../types';
+import { StateNotifierType } from '../types/StateNotifierType';
 import { REDUCER_NOTIFIER_NAME } from '../constants';
-import { Item } from '../components';
+import { Item } from '../components/Item';
 import notifierCss from '../assets/notifier.module.scss';
 
 type PropsType = StateNotifierType;

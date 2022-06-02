@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { ItemType, NotifierVariant } from '../types';
-import { useNotifier } from '../hooks';
+import { ItemType } from '../types/ItemType';
+import { NotifierVariant } from '../types/NotifierVariant';
+import { useNotifier } from '../hooks/useNotifier';
 import notifierCss from '../assets/notifier.module.scss';
 
 const defaultProps = {

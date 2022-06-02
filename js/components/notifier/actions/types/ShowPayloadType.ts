@@ -1,4 +1,4 @@
-import { ItemType } from '../../types';
+import { ItemType } from '../../types/ItemType';
 
 type ShowPayloadType = {
   item: ItemType,

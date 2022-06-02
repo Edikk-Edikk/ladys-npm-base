@@ -1,5 +1,5 @@
 import React from 'react';
-import { SweetAlertVariant } from '../types';
+import { SweetAlertVariant } from '../types/SweetAlertVariant';
 import classNames from 'classnames';
 import sweetAlertCss from '../../assets/sweet-alert.module.scss';
 import { TYPE_ERROR } from '../constants';

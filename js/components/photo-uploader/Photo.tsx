@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { useMounted } from '@restart/hooks';
+import useMounted from '@restart/hooks/useMounted';
 // @ts-ignore
 import TrashCanSvg from '@fortawesome/fontawesome-free/svgs/solid/trash-can.svg';
 import { PhotoType } from './types/PhotoType';

@@ -24,7 +24,7 @@ const StoriesDetailList: VFC<PropsType> = ({
   const storiesList = stories.map((item) => (
     <StoriesDetail
       id={item.id}
-      photo={item.photo}
+      photoUrl={item.photoUrl}
       description={item.description}
       time={item.time}
       renderActions={renderActions}

@@ -47,7 +47,7 @@ const StoriesList: VFC<PropsType> = ({
         <Stories
           ref={itemsRefList[index]}
           id={item.id}
-          photo={item.photo}
+          photoThumbUrl={item.photoThumbUrl}
           time={item.time}
           onClick={() => {
             onClickOnStories(item.id, itemsRefList[index]);

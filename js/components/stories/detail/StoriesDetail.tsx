@@ -3,13 +3,13 @@ import HTMLReactParser from 'html-react-parser';
 import storyDetailCss from './assets/story-detail.module.scss';
 import { StoriesType } from '../types';
 
-type PropsType = Pick<StoriesType, 'id' | 'photo' | 'description' | 'time'> & {
+type PropsType = Pick<StoriesType, 'id' | 'photoUrl' | 'description' | 'time'> & {
   renderActions: (id: number) => ReactElement;
 };
 
 const StoriesDetail: VFC<PropsType> = ({
   id,
-  photo,
+  photoUrl,
   description,
   time,
   renderActions,
@@ -28,7 +28,7 @@ const StoriesDetail: VFC<PropsType> = ({
 
   return (
     <div className={storyDetailCss.storyDetail}>
-      <img src={photo} className={storyDetailCss.storyDetail__photo} />
+      <img src={photoUrl} className={storyDetailCss.storyDetail__photo} />
       <div className={storyDetailCss.storyDetail__content}>
         <div className={storyDetailCss.storyDetail__time}>
           <span>

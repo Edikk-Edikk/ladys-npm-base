@@ -6,14 +6,14 @@ import classNames from 'classnames';
 import storiesCss from './assets/stories.module.scss';
 import { StoriesType } from '../types';
 
-type PropsType = Pick<StoriesType, 'id' | 'photo' | 'time'> & {
+type PropsType = Pick<StoriesType, 'id' | 'photoThumbUrl' | 'time'> & {
   onClick: () => void;
   isProcess?: boolean;
 };
 
 const Stories = forwardRef<HTMLDivElement, PropsType>(({
   id,
-  photo,
+  photoThumbUrl,
   time,
   onClick,
   isProcess = false,
@@ -48,7 +48,7 @@ const Stories = forwardRef<HTMLDivElement, PropsType>(({
             </div>
           </Then>
           <Else>
-            <img className={storiesCss.stories__photo} src={photo} />
+            <img className={storiesCss.stories__photo} src={photoThumbUrl} />
           </Else>
         </If>
       </div>

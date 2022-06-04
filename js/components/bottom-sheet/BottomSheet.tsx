@@ -13,6 +13,7 @@ import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
 // @ts-ignore
 import bottomSheetCss from './bottom-sheet.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropTypes = {
   id?: string;
@@ -42,6 +43,7 @@ const BottomSheet: React.FC<PropTypes> = ({
   bodyAdditionalClassName,
   isFullHeight,
 }) => {
+  useStyles(bottomSheetCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
   const [isMounted, setIsMounted] = useState<boolean>(false);

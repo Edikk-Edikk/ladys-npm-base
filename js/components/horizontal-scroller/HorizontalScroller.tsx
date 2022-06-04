@@ -7,6 +7,7 @@ import React, {
 import { motion } from 'framer-motion';
 import horizontalScrollerCss from './horizontal-scroller.module.scss';
 import classNames from 'classnames';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   children: ReactElement[];
@@ -17,6 +18,7 @@ const HorizontalScroller: React.FC<PropsType> = ({
   children,
   innerAdditionalClassName,
 }) => {
+  useStyles(horizontalScrollerCss);
   const refContainer = useRef<HTMLDivElement>();
   const refInner = useRef<HTMLDivElement>();
   const [containerWidth, setContainerWidth] = useState<number>(0);

@@ -5,6 +5,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import contextMenuCss from './assets/context-menu.module.scss';
 import { ContentMenuType, ContextMenuActionType } from './types';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   actions: ContextMenuActionType[];
@@ -17,6 +18,7 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
   onShow,
   onHide,
 }, forwardedRef) => {
+  useStyles(contextMenuCss);
   const [popoverTarget, setPopoverTarget] = useState<HTMLElement>(null);
   const [popper, setPopper] = useState<HTMLDivElement>(null);
   const [popperArrow, setPopperArrow] = useState<HTMLDivElement>(null);

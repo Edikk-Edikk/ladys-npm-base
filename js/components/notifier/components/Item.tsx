@@ -5,6 +5,7 @@ import { ItemType } from '../types/ItemType';
 import { NotifierVariant } from '../types/NotifierVariant';
 import { useNotifier } from '../hooks/useNotifier';
 import notifierCss from '../assets/notifier.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 const defaultProps = {
   timeout: 3000,
@@ -18,6 +19,7 @@ const Item: React.FC<Required<ItemType>> = ({
   timeout,
   variant,
 }) => {
+  useStyles(notifierCss);
   const { notifierHide } = useNotifier();
   const timeoutId = useRef<number>();
 

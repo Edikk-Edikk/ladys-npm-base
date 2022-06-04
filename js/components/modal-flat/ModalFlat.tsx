@@ -18,6 +18,7 @@ import modalFlatCss from './assets/modal-flat.module.scss';
 import modalFlatOverlayCss from './assets/modal-flat-overlay.module.scss';
 import { ModalFlatDialog } from './ModalFlatDialog';
 import { Subject, Subscription } from 'rxjs';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   id?: string;
@@ -41,6 +42,7 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   onExited,
   additionalClassName,
 }, forwardedRef) => {
+  useStyles(modalFlatCss, modalFlatOverlayCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const history = useHistory<ModalFlatHistoryLocationStateType>();

@@ -1,5 +1,6 @@
 import React, { VFC } from 'react';
 import imageUploaderCss from './assets/image-uploader.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   preview: string;
@@ -8,6 +9,7 @@ type PropsType = {
 const ImageUploaderPreview: VFC<PropsType> = ({
   preview,
 }) => {
+  useStyles(imageUploaderCss);
   if (!preview) {
     return null;
   }

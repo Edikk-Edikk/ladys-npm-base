@@ -5,6 +5,7 @@ import { useModalFlatContext } from './hooks';
 import modalFlatHeaderCss from './assets/modal-flat-header.module.scss';
 import classNames from 'classnames';
 import { SvgIcon } from '../svg-icon/SvgIcon';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   additionalClassName?: string;
@@ -14,6 +15,7 @@ const ModalFlatHeader: FC<PropsType> = ({
   children,
   additionalClassName,
 }) => {
+  useStyles(modalFlatHeaderCss);
   const { hide } = useModalFlatContext();
 
   const handlerClickOnCloseIcon = () => {

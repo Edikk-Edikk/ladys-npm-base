@@ -10,6 +10,7 @@ import { ImageUploaderError } from './ImageUploaderError';
 import { ImageUploaderStub } from './ImageUploaderStub';
 import { ImageUploaderPreview } from './ImageUploaderPreview';
 import imageUploaderCss from './assets/image-uploader.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   name?: string;
@@ -24,6 +25,7 @@ const ImageUploader: VFC<PropsType> = ({
   additionalClassName,
   size = false,
 }) => {
+  useStyles(imageUploaderCss);
   const { mutators: { setValue } } = useForm();
   const { values } = useFormState();
   const photo = useMemo(() => values[name], []);

@@ -10,6 +10,7 @@ import { HistoryLocationStateType } from './HistoryLocationStateType';
 // @ts-ignore
 import modalFadeCss from './modal-fade.module.scss';
 import { SvgIcon } from '../svg-icon/SvgIcon';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   id?: string;
@@ -27,6 +28,7 @@ const ModalFade: React.FC<PropsType> = ({
   children,
   close,
 }) => {
+  useStyles(modalFadeCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
 

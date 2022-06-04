@@ -8,7 +8,7 @@ const NotFound = () => {
       <div className="error-page__title">
         4😵4
       </div>
-      <div className="error-page__action">
+      <div className="error-page__description">
         The page you were looking for was not found.
       </div>
       <Link to="/" className={classNames("error-page__action", 'btn btn-primary btn-lg')}>

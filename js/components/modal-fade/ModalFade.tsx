@@ -9,6 +9,7 @@ import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
 // @ts-ignore
 import modalFadeCss from './modal-fade.module.scss';
+import { SvgIcon } from '../svg-icon/SvgIcon';
 
 type PropsType = {
   id?: string;
@@ -109,7 +110,7 @@ const ModalFade: React.FC<PropsType> = ({
 
     return (
       <button type="button" className={modalFadeCss.modalFade__close} onClick={handlerClose}>
-        <XmarkSvg className="svg-icon" />
+        <SvgIcon icon={XmarkSvg} />
       </button>
     );
   };

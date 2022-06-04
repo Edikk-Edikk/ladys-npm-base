@@ -5,6 +5,7 @@ import { Else, If, Then } from 'react-if';
 import classNames from 'classnames';
 import storiesCss from './assets/stories.module.scss';
 import { StoriesType } from '../types';
+import { SvgIcon } from '../../svg-icon/SvgIcon';
 
 type PropsType = Pick<StoriesType, 'id' | 'photoThumbUrl' | 'time'> & {
   onClick: () => void;
@@ -44,7 +45,7 @@ const Stories = forwardRef<HTMLDivElement, PropsType>(({
         <If condition={isProcess}>
           <Then>
             <div className={storiesCss.stories__processIndicator}>
-              <SpinnerSvg className='svg-icon svg-icon_spin' />
+              <SvgIcon icon={SpinnerSvg} spin />
             </div>
           </Then>
           <Else>

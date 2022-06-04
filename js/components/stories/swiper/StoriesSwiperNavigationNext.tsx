@@ -4,6 +4,7 @@ import AngleRightSvg from '@fortawesome/fontawesome-free/svgs/solid/angle-right.
 import React from 'react';
 // @ts-ignore
 import storiesSwiperCss from './assets/stories-swiper.module.scss';
+import { SvgIcon } from '../../svg-icon/SvgIcon';
 
 const StoriesSwiperNavigationNext = ({ swiper }) => {
   const handlerClick = () => {
@@ -19,7 +20,7 @@ const StoriesSwiperNavigationNext = ({ swiper }) => {
       )}
       onClick={handlerClick}
     >
-      <AngleRightSvg className="svg-icon" />
+      <SvgIcon icon={AngleRightSvg} />
     </button>
   );
 };

@@ -3,6 +3,7 @@ import useMounted from '@restart/hooks/useMounted';
 // @ts-ignore
 import TrashCanSvg from '@fortawesome/fontawesome-free/svgs/solid/trash-can.svg';
 import { PhotoType } from './types/PhotoType';
+import { SvgIcon } from '../svg-icon/SvgIcon';
 
 type PropTypes = PhotoType & {
   onClickRemove: (id: number) => Promise<void>;
@@ -61,7 +62,7 @@ const Photo: React.FC<PropTypes> = ({
           onClick={handlerClickRemove}
           disabled={isProcessDelete}
         >
-          <TrashCanSvg className="svg-icon" />
+          <SvgIcon icon={TrashCanSvg} />
         </button>
         <div className="uploader-result-item-preview">
           <img src={url} />

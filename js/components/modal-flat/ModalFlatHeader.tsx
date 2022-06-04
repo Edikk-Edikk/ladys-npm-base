@@ -4,6 +4,7 @@ import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useModalFlatContext } from './hooks';
 import modalFlatHeaderCss from './assets/modal-flat-header.module.scss';
 import classNames from 'classnames';
+import { SvgIcon } from '../svg-icon/SvgIcon';
 
 type PropsType = {
   additionalClassName?: string;
@@ -25,7 +26,7 @@ const ModalFlatHeader: FC<PropsType> = ({
         {children}
       </div>
       <button type="button" className={modalFlatHeaderCss.modalFlatHeader__closeIcon} onClick={handlerClickOnCloseIcon}>
-        <XmarkSvg className="svg-icon" />
+        <SvgIcon icon={XmarkSvg} />
       </button>
     </div>
   );

@@ -8,6 +8,7 @@ import { UploadSuccessType } from './types/UploadSuccessType';
 import { RemoveSuccessType } from './types/RemoveSuccessType';
 import { ChangeInfoSuccessType } from './types/ChangeInfoSuccessType';
 import { useNetworkService } from '../network-service';
+import { SvgIcon } from '../svg-icon/SvgIcon';
 
 type PropTypes = {
   btnText: string;
@@ -187,7 +188,7 @@ const PhotoUploader: React.FC<PropTypes> = ({
       <div className="photo-uploader">
         <If condition={isProcess}>
           <Then>
-            <SpinnerSvg className='svg-icon svg-icon_spin photo-uploader__loader' />
+            <SvgIcon icon={SpinnerSvg} spin additionalClassName="photo-uploader__loader" />
           </Then>
           <Else>
             <label className="photo-uploader__button">

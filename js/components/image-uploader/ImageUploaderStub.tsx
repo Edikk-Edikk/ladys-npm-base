@@ -12,7 +12,7 @@ const ImageUploaderStub: VFC<PropsType> = ({
   placeholder,
 }) => (
   <div className={imageUploaderStubCss.imageUploaderStub}>
-    <SvgIcon icon={CircleUserSvg} spin additionalClassName={imageUploaderStubCss.imageUploaderStub__stubIcon}/>
+    <SvgIcon icon={CircleUserSvg} additionalClassName={imageUploaderStubCss.imageUploaderStub__stubIcon}/>
     <div className={imageUploaderStubCss.imageUploaderStub__text}>
       {placeholder}
     </div>

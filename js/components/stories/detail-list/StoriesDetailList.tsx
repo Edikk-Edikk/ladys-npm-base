@@ -10,7 +10,7 @@ type PropsType = {
   hide: () => void;
   index: number | null;
   stories: StoriesType[];
-  renderActions?: (id: number) => ReactElement;
+  renderActions: (id: number) => ReactElement;
 };
 
 const StoriesDetailList: VFC<PropsType> = ({

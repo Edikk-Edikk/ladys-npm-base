@@ -2,6 +2,7 @@ import React, { ReactElement, VFC } from 'react';
 import HTMLReactParser from 'html-react-parser';
 import storyDetailCss from './assets/story-detail.module.scss';
 import { StoriesType } from '../types';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = Pick<StoriesType, 'id' | 'photoUrl' | 'description' | 'time'> & {
   renderActions: (id: number) => ReactElement;
@@ -14,6 +15,7 @@ const StoriesDetail: VFC<PropsType> = ({
   time,
   renderActions,
 }) => {
+  useStyles(storyDetailCss);
   const renderDescription = () => {
     if (!description) {
       return null;

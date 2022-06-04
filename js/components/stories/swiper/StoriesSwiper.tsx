@@ -11,6 +11,7 @@ import { StoriesSwiperNavigationPrev } from './StoriesSwiperNavigationPrev';
 import { StoriesSwiperNavigationNext } from './StoriesSwiperNavigationNext';
 import { Timeline } from './Timeline';
 import storiesSwiperCss from './assets/stories-swiper.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   stories: ReactElement[];
@@ -23,6 +24,7 @@ const StoriesSwiper: VFC<PropsType> = ({
   duration = 10000,
   initialSlide = 0,
 }) => {
+  useStyles(storiesSwiperCss);
   const [currentSlide, setCurrentSlide] = useState<number>(initialSlide);
   const [progress, setProgress] = useState<number>(0);
   const refSwiper = useRef(null);

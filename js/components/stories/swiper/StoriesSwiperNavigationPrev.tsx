@@ -5,8 +5,10 @@ import React from 'react';
 // @ts-ignore
 import storiesSwiperCss from './assets/stories-swiper.module.scss';
 import { SvgIcon } from '../../svg-icon/SvgIcon';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 const StoriesSwiperNavigationPrev = ({ swiper }) => {
+  useStyles(storiesSwiperCss);
   const handlerClick = () => {
     swiper.slidePrev();
   };

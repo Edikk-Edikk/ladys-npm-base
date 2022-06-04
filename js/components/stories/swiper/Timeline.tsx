@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { ReactElement, VFC } from 'react';
 // @ts-ignore
 import storiesTimelineCss from './assets/stories-timeline.module.scss';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   stories: ReactElement[];
@@ -16,6 +17,7 @@ const Timeline: VFC<PropsType> = ({
   progress,
   duration,
 }) => {
+  useStyles(storiesTimelineCss);
   const items = stories.map((story, index) => {
     const isActive = index === currentSlide;
     const renderIndicator = () => {

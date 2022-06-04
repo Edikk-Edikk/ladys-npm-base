@@ -11,6 +11,7 @@ import storiesListCss from './asssets/stories-list.module.scss';
 import { Stories, StoriesPlaceholder } from '../stories';
 import { HorizontalScroller } from '../../horizontal-scroller';
 import { StoriesType } from '../types';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   isInit: boolean;
@@ -29,6 +30,7 @@ const StoriesList: VFC<PropsType> = ({
   rows = 1,
   processedIds = [],
 }) => {
+  useStyles(storiesListCss);
   const [itemsRefList, setItemsRefList] = useState<MutableRefObject<HTMLDivElement>[]>([]);
 
   useEffect(() => {

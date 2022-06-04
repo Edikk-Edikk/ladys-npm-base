@@ -4,6 +4,7 @@ import { Advert } from './Advert';
 // @ts-ignore
 import storiesManagementCss from './assets/stories-management.module.scss';
 import { StoriesManagementAdvertType } from '../types';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   adverts: StoriesManagementAdvertType[];
@@ -14,6 +15,7 @@ const Adverts: VFC<PropsType> = ({
   adverts,
   onClickOnAdvert,
 }) => {
+  useStyles(storiesManagementCss);
   let advertList = [];
   if (!adverts) {
     for (let i = 0; i < 16; i += 1) {

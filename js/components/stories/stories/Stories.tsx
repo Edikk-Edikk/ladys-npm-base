@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import storiesCss from './assets/stories.module.scss';
 import { StoriesType } from '../types';
 import { SvgIcon } from '../../svg-icon/SvgIcon';
+import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = Pick<StoriesType, 'id' | 'photoThumbUrl' | 'time'> & {
   onClick: () => void;
@@ -19,6 +20,7 @@ const Stories = forwardRef<HTMLDivElement, PropsType>(({
   onClick,
   isProcess = false,
 }, forwardedRef) => {
+  useStyles(storiesCss);
   const renderTime = () => {
     if (!time) {
       return null;

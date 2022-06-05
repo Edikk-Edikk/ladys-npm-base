@@ -5,7 +5,6 @@ import React, {
   useState,
   VFC,
 } from 'react';
-import 'swiper/swiper.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { StoriesSwiperNavigationPrev } from './StoriesSwiperNavigationPrev';
 import { StoriesSwiperNavigationNext } from './StoriesSwiperNavigationNext';

@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-// @ts-ignore
-import AngleRightSvg from '@fortawesome/fontawesome-free/svgs/solid/angle-right.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { SvgIcon } from '../../svg-icon/SvgIcon';
 
 const StoriesSwiperNavigationNext = ({ swiper }) => {
   const handlerClick = () => {
@@ -18,7 +17,7 @@ const StoriesSwiperNavigationNext = ({ swiper }) => {
       )}
       onClick={handlerClick}
     >
-      <SvgIcon icon={AngleRightSvg} />
+      <FontAwesomeIcon icon={faAngleRight} />
     </button>
   );
 };

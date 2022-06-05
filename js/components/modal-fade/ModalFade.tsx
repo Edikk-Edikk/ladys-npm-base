@@ -2,12 +2,11 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
-// @ts-ignore
-import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useHistory } from 'react-router';
 import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
-import { SvgIcon } from '../svg-icon/SvgIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import faXmark from '@fortawesome/free-solid-svg-icons/faXmark';
 
 type PropsType = {
   id?: string;
@@ -108,7 +107,7 @@ const ModalFade: React.FC<PropsType> = ({
 
     return (
       <button type="button" className="modal-fade__close" onClick={handlerClose}>
-        <SvgIcon icon={XmarkSvg} />
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     );
   };

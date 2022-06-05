@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import faAngleLeft from '@fortawesome/free-solid-svg-icons/faAngleLeft';
 import React from 'react';
 
 const StoriesSwiperNavigationPrev = ({ swiper }) => {

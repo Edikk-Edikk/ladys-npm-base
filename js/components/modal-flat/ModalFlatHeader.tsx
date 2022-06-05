@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-// @ts-ignore
-import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useModalFlatContext } from './hooks';
 import classNames from 'classnames';
-import { SvgIcon } from '../svg-icon/SvgIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import faXmark from '@fortawesome/free-solid-svg-icons/faXmark';
 
 type PropsType = {
   additionalClassName?: string;
@@ -25,7 +24,7 @@ const ModalFlatHeader: FC<PropsType> = ({
         {children}
       </div>
       <button type="button" className="modal-flat-header__close-icon" onClick={handlerClickOnCloseIcon}>
-        <SvgIcon icon={XmarkSvg} />
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );

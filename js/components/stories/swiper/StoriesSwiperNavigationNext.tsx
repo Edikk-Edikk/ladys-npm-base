@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import faAngleRight from '@fortawesome/free-solid-svg-icons/faAngleRight';
 import React from 'react';
 
 const StoriesSwiperNavigationNext = ({ swiper }) => {

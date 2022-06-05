@@ -3,15 +3,12 @@ import { connect } from 'react-redux';
 import { StateNotifierType } from '../types/StateNotifierType';
 import { REDUCER_NOTIFIER_NAME } from '../constants';
 import { Item } from '../components/Item';
-import notifierCss from '../assets/notifier.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = StateNotifierType;
 
 const Notifier: React.VFC<PropsType> = ({
   items,
 }) => {
-  useStyles(notifierCss);
   const renderItems = () => Object.entries(items).map(([key, item]) => (
     <Item
       key={key}
@@ -24,7 +21,7 @@ const Notifier: React.VFC<PropsType> = ({
   ));
 
   return (
-    <div className={notifierCss.notifier}>
+    <div className="notifier">
       {renderItems()}
     </div>
   );

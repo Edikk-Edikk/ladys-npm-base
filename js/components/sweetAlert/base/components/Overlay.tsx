@@ -1,5 +1,4 @@
 import React from 'react';
-import sweetAlertCss from '../../assets/sweet-alert.module.scss';
 import classNames from 'classnames';
 
 type PropsType = {
@@ -10,7 +9,7 @@ const Overlay: React.FC<PropsType> = ({
   children,
   show,
 }) => (
-  <div role="presentation" className={classNames({ [sweetAlertCss.sweetAlertOverlay]: show })}>
+  <div role="presentation" className={classNames({ 'sweet-alert-overlay': show })}>
     {children}
   </div>
 );

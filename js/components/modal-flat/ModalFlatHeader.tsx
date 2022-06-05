@@ -2,10 +2,8 @@ import React, { FC } from 'react';
 // @ts-ignore
 import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useModalFlatContext } from './hooks';
-import modalFlatHeaderCss from './assets/modal-flat-header.module.scss';
 import classNames from 'classnames';
 import { SvgIcon } from '../svg-icon/SvgIcon';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   additionalClassName?: string;
@@ -15,7 +13,6 @@ const ModalFlatHeader: FC<PropsType> = ({
   children,
   additionalClassName,
 }) => {
-  useStyles(modalFlatHeaderCss);
   const { hide } = useModalFlatContext();
 
   const handlerClickOnCloseIcon = () => {
@@ -23,11 +20,11 @@ const ModalFlatHeader: FC<PropsType> = ({
   };
 
   return (
-    <div className={classNames(modalFlatHeaderCss.modalFlatHeader, additionalClassName)}>
-      <div className={modalFlatHeaderCss.modalFlatHeader__content}>
+    <div className={classNames('modal-flat-header', additionalClassName)}>
+      <div className="modal-flat-header__content">
         {children}
       </div>
-      <button type="button" className={modalFlatHeaderCss.modalFlatHeader__closeIcon} onClick={handlerClickOnCloseIcon}>
+      <button type="button" className="modal-flat-header__close-icon" onClick={handlerClickOnCloseIcon}>
         <SvgIcon icon={XmarkSvg} />
       </button>
     </div>

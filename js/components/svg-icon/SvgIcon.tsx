@@ -1,7 +1,5 @@
 import React, { VFC } from 'react';
 import classNames from 'classnames';
-import svgIconCss from './assets/svg-icon.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   icon: typeof React.Component;
@@ -14,14 +12,13 @@ const SvgIcon: VFC<PropsType> = ({
   additionalClassName,
   spin,
 }) => {
-  useStyles(svgIconCss);
   const Icon = icon;
 
   return (
     <Icon
       className={classNames(
-        svgIconCss.svgIcon,
-        { [svgIconCss.svgIcon_spin]: spin },
+        'svg-icon',
+        { 'svg-icon_spin': spin },
         additionalClassName,
       )}
     />

@@ -10,7 +10,6 @@ import { Overlay } from './components/Overlay';
 import { Content } from './components/Content';
 import { Button } from './components/Button';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
-import sweetAlertCss from '../assets/sweet-alert.module.scss';
 
 const defaultProps: DefaultPropsType = {
   type: TYPE_DEFAULT,
@@ -116,14 +115,14 @@ const SweetAlertBase: React.FC<PropsType> = ({
       return null;
     }
 
-    return <button aria-label="close" type="button" className={sweetAlertCss.sweetAlert__close} onClick={onClose} />;
+    return <button aria-label="close" type="button" className="sweet-alert__close" onClick={onClose} />;
   };
 
   const renderButtons = (): ReactNode => (
     <div
       className={classNames(
-        sweetAlertCss.sweetAlert__actions,
-        { [sweetAlertCss.sweetAlert__actions_error]: type === TYPE_ERROR }
+        'sweet-alert__actions',
+        { 'sweet-alert__actions_error': type === TYPE_ERROR }
       )}
     >
       <Button
@@ -161,8 +160,8 @@ const SweetAlertBase: React.FC<PropsType> = ({
     return (
       <div
         className={classNames(
-          sweetAlertCss.sweetAlert__header,
-          { [sweetAlertCss.sweetAlert__header_error]: type === TYPE_ERROR }
+          'sweet-alert__header',
+          { 'sweet-alert__header_error': type === TYPE_ERROR }
         )}
       >
         <Title variant={type}>{title}</Title>
@@ -177,8 +176,8 @@ const SweetAlertBase: React.FC<PropsType> = ({
         timeout={300}
         unmountOnExit
         classNames={{
-          enterActive: sweetAlertCss.sweetAlertEnterActive,
-          exitActive: sweetAlertCss.sweetAlertExitActive,
+          enterActive: 'sweet-alert-enter-active',
+          exitActive: 'sweet-alert-exit-active',
         }}
         onEnter={handlerTransitionEnter}
         onEntered={handlerTransitionEntered}
@@ -190,8 +189,8 @@ const SweetAlertBase: React.FC<PropsType> = ({
           role="presentation"
           onClick={handlerClickInside}
           className={classNames(
-            sweetAlertCss.sweetAlert,
-            { [sweetAlertCss.sweetAlert_error]: type === TYPE_ERROR }
+            'sweet-alert',
+            { 'sweet-alert_error': type === TYPE_ERROR }
           )}
         >
           {renderCloseButton()}

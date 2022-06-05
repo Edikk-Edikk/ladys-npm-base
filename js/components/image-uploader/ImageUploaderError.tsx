@@ -1,8 +1,6 @@
 import { useFormState } from 'react-final-form';
 import get from 'lodash/get';
-import imageUploaderCss from './assets/image-uploader.module.scss';
 import React, { VFC } from 'react';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   name: string;
@@ -11,7 +9,6 @@ type PropsType = {
 const ImageUploaderError: VFC<PropsType> = ({
   name,
 }) => {
-  useStyles(imageUploaderCss);
   const { submitErrors, errors } = useFormState();
   const error = get(submitErrors, name) || get(errors, name);
   if (!error) {
@@ -19,7 +16,7 @@ const ImageUploaderError: VFC<PropsType> = ({
   }
 
   return (
-    <div className={imageUploaderCss.imageUploader__error}>
+    <div className="image-uploader__error">
       {error}
     </div>
   );

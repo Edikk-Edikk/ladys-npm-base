@@ -1,8 +1,5 @@
 import classnames from 'classnames';
 import React, { ReactElement, VFC } from 'react';
-// @ts-ignore
-import storiesTimelineCss from './assets/stories-timeline.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   stories: ReactElement[];
@@ -17,7 +14,6 @@ const Timeline: VFC<PropsType> = ({
   progress,
   duration,
 }) => {
-  useStyles(storiesTimelineCss);
   const items = stories.map((story, index) => {
     const isActive = index === currentSlide;
     const renderIndicator = () => {
@@ -29,7 +25,7 @@ const Timeline: VFC<PropsType> = ({
       const scaleX = progressInPercent / 100;
       return (
         <div
-          className={storiesTimelineCss.storiesTimeline__indicator}
+          className="stories-timeline__indicator"
           style={{ transform: `scaleX(${scaleX})` }}
         />
       );
@@ -38,8 +34,8 @@ const Timeline: VFC<PropsType> = ({
     return (
       <div
         className={classnames(
-          storiesTimelineCss.storiesTimeline__item,
-          { [storiesTimelineCss.storiesTimeline__item_complete]: index < currentSlide },
+          'stories-timeline__item',
+          { 'stories-timeline__item_complete': index < currentSlide },
         )}
         // eslint-disable-next-line
         key={index}>
@@ -49,7 +45,7 @@ const Timeline: VFC<PropsType> = ({
   });
 
   return (
-    <div className={storiesTimelineCss.storiesTimeline}>
+    <div className="stories-timeline">
       {items}
     </div>
   );

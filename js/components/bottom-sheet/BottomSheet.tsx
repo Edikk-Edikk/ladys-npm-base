@@ -11,9 +11,6 @@ import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
-// @ts-ignore
-import bottomSheetCss from './bottom-sheet.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropTypes = {
   id?: string;
@@ -43,7 +40,6 @@ const BottomSheet: React.FC<PropTypes> = ({
   bodyAdditionalClassName,
   isFullHeight,
 }) => {
-  useStyles(bottomSheetCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -262,7 +258,7 @@ const BottomSheet: React.FC<PropTypes> = ({
         <AnimatePresence>
           {isVisible && (
             <motion.div
-              className={bottomSheetCss.bottomSheetOverlay}
+              className="bottom-sheet-overlay"
               onClick={() => {
                 hide();
               }}
@@ -274,12 +270,12 @@ const BottomSheet: React.FC<PropTypes> = ({
         </AnimatePresence>
         <motion.div
           ref={refSheet}
-          className={classNames(bottomSheetCss.bottomSheet, additionalClassName)}
+          className={classNames('bottom-sheet', additionalClassName)}
           animate={controls}
         >
-          <div className={bottomSheetCss.bottomSheet__content} ref={refSheetContent}>
-            <div {...bind()} className={bottomSheetCss.bottomSheet__header} />
-            <div className={classNames(bottomSheetCss.bottomSheet__body, bodyAdditionalClassName)}>
+          <div className="bottom-sheet__content" ref={refSheetContent}>
+            <div {...bind()} className="bottom-sheet__header" />
+            <div className={classNames('bottom-sheet__body', bodyAdditionalClassName)}>
               {children}
             </div>
           </div>

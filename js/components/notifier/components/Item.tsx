@@ -4,8 +4,6 @@ import { CSSTransition } from 'react-transition-group';
 import { ItemType } from '../types/ItemType';
 import { NotifierVariant } from '../types/NotifierVariant';
 import { useNotifier } from '../hooks/useNotifier';
-import notifierCss from '../assets/notifier.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 const defaultProps = {
   timeout: 3000,
@@ -19,7 +17,6 @@ const Item: React.FC<Required<ItemType>> = ({
   timeout,
   variant,
 }) => {
-  useStyles(notifierCss);
   const { notifierHide } = useNotifier();
   const timeoutId = useRef<number>();
 
@@ -63,15 +60,15 @@ const Item: React.FC<Required<ItemType>> = ({
       in={isVisible}
       timeout={500}
       classNames={{
-        enterActive: notifierCss.notifier__itemEnterActive,
-        exitActive: notifierCss.notifier__itemExitActive,
+        enterActive: 'notifier__item-enter-active',
+        exitActive: 'notifier__item-exit-active',
       }}
       onExited={handlerTransitionExited}
     >
       <div
         className={classNames(
-          notifierCss.notifier__item,
-          { [notifierCss.notifier__item_black]: variant === NotifierVariant.black },
+          'notifier__item',
+          { 'notifier__item_black': variant === NotifierVariant.black },
         )}
         onMouseLeave={hide}
       >

@@ -1,3 +1,9 @@
+@import "modal-flat-body";
+@import "modal-flat-dialog";
+@import "modal-flat-footer";
+@import "modal-flat-header";
+@import "modal-flat-overlay";
+
 .modal-flat {
   position: fixed;
   top: 50%;
@@ -31,9 +37,6 @@
   &-exit-active {
     animation: modalFlatShowOut 300ms;
     display: flex;
-  }
-
-  &__header {
   }
 
   @keyframes modalFlatShowIn {

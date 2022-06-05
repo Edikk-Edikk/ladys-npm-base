@@ -1,10 +1,7 @@
 import React, { VFC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Advert } from './Advert';
-// @ts-ignore
-import storiesManagementCss from './assets/stories-management.module.scss';
 import { StoriesManagementAdvertType } from '../types';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   adverts: StoriesManagementAdvertType[];
@@ -15,14 +12,13 @@ const Adverts: VFC<PropsType> = ({
   adverts,
   onClickOnAdvert,
 }) => {
-  useStyles(storiesManagementCss);
   let advertList = [];
   if (!adverts) {
     for (let i = 0; i < 16; i += 1) {
       advertList.push((
-        <div key={i} className={storiesManagementCss.storiesManagementItem}>
-          <div className={storiesManagementCss.storiesManagementItem__imageHolder}>
-            <div className={storiesManagementCss.storiesManagementItem__image}>
+        <div key={i} className="stories-management-item">
+          <div className="stories-management-item__image-holder">
+            <div className="stories-management-item__image">
               <Skeleton height="100%" />
             </div>
           </div>
@@ -48,7 +44,7 @@ const Adverts: VFC<PropsType> = ({
   }
 
   return (
-    <div className={storiesManagementCss.storiesManagement}>
+    <div className="stories-management">
       {advertList}
     </div>
   );

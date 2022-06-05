@@ -14,11 +14,8 @@ import { ModalFlatType } from './types';
 import { ModalFlatContextType } from './context';
 import { ModalFlatContext } from './context';
 import { ModalFlatHistoryLocationStateType } from './types';
-import modalFlatCss from './assets/modal-flat.module.scss';
-import modalFlatOverlayCss from './assets/modal-flat-overlay.module.scss';
 import { ModalFlatDialog } from './ModalFlatDialog';
 import { Subject, Subscription } from 'rxjs';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   id?: string;
@@ -42,7 +39,6 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   onExited,
   additionalClassName,
 }, forwardedRef) => {
-  useStyles(modalFlatCss, modalFlatOverlayCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const history = useHistory<ModalFlatHistoryLocationStateType>();
@@ -177,13 +173,13 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
           timeout={300}
           unmountOnExit
           classNames={{
-            enterActive: modalFlatOverlayCss.modalFlatOverlayEnterActive,
-            exitActive: modalFlatOverlayCss.modalFlatOverlayExitActive,
+            enterActive: 'modal-flat-overlay-enter-active',
+            exitActive: 'modal-flat-overlay-exit-active',
           }}
         >
           <div
             role="presentation"
-            className={modalFlatOverlayCss.modalFlatOverlay}
+            className="modal-flat-overlay"
             onClick={handlerClickOnOverlay}
           />
         </CSSTransition>
@@ -192,8 +188,8 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
           timeout={300}
           unmountOnExit
           classNames={{
-            enterActive: modalFlatCss.modalFlatEnterActive,
-            exitActive: modalFlatCss.modalFlatExitActive,
+            enterActive: 'modal-flat-enter-active',
+            exitActive: 'modal-flat-exit-active',
           }}
           onEnter={handlerEnter}
           onEntering={handlerEntering}
@@ -204,8 +200,8 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
         >
           <div
             className={classNames(
-              modalFlatCss.modalFlat,
-              { [modalFlatCss.modalFlat_isVisible]: isVisible },
+              'modal-flat',
+              { 'modal-flat_is-visible': isVisible },
               additionalClassName,
             )}
           >

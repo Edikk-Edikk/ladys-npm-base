@@ -2,13 +2,9 @@ import classNames from 'classnames';
 // @ts-ignore
 import AngleLeftSvg from '@fortawesome/fontawesome-free/svgs/solid/angle-left.svg';
 import React from 'react';
-// @ts-ignore
-import storiesSwiperCss from './assets/stories-swiper.module.scss';
 import { SvgIcon } from '../../svg-icon/SvgIcon';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 const StoriesSwiperNavigationPrev = ({ swiper }) => {
-  useStyles(storiesSwiperCss);
   const handlerClick = () => {
     swiper.slidePrev();
   };
@@ -17,8 +13,8 @@ const StoriesSwiperNavigationPrev = ({ swiper }) => {
     <button
       type="button"
       className={classNames(
-        storiesSwiperCss.storiesSwiper__navigation,
-        storiesSwiperCss.storiesSwiper__navigation_prev,
+        'stories-swiper__navigation',
+        'stories-swiper__navigation_prev',
       )}
       onClick={handlerClick}
     >

@@ -9,8 +9,6 @@ import classnames from 'classnames';
 import { ImageUploaderError } from './ImageUploaderError';
 import { ImageUploaderStub } from './ImageUploaderStub';
 import { ImageUploaderPreview } from './ImageUploaderPreview';
-import imageUploaderCss from './assets/image-uploader.module.scss';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   name?: string;
@@ -25,7 +23,6 @@ const ImageUploader: VFC<PropsType> = ({
   additionalClassName,
   size = false,
 }) => {
-  useStyles(imageUploaderCss);
   const { mutators: { setValue } } = useForm();
   const { values } = useFormState();
   const photo = useMemo(() => values[name], []);
@@ -49,8 +46,8 @@ const ImageUploader: VFC<PropsType> = ({
   return (
     <label
       className={classnames(
-        imageUploaderCss.imageUploader,
-        { [imageUploaderCss.imageUploader_sizeLg]: isSizeLg() },
+        'image-uploader',
+        { 'image-uploader_size-lg': isSizeLg() },
         additionalClassName,
       )}
     >
@@ -59,7 +56,7 @@ const ImageUploader: VFC<PropsType> = ({
       <input
         type="file"
         onChange={handlerChangeOnFileInput}
-        className={imageUploaderCss.imageUploader__input}
+        className="image-uploader__input"
       />
       <ImageUploaderError name={name} />
     </label>

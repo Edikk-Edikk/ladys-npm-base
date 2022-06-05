@@ -7,11 +7,9 @@ import React, {
   VFC,
 } from 'react';
 import chunk from 'lodash/chunk';
-import storiesListCss from './asssets/stories-list.module.scss';
 import { Stories, StoriesPlaceholder } from '../stories';
 import { HorizontalScroller } from '../../horizontal-scroller';
 import { StoriesType } from '../types';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   isInit: boolean;
@@ -30,7 +28,6 @@ const StoriesList: VFC<PropsType> = ({
   rows = 1,
   processedIds = [],
 }) => {
-  useStyles(storiesListCss);
   const [itemsRefList, setItemsRefList] = useState<MutableRefObject<HTMLDivElement>[]>([]);
 
   useEffect(() => {
@@ -81,14 +78,14 @@ const StoriesList: VFC<PropsType> = ({
 
     return (
       // eslint-disable-next-line react/no-array-index-key
-      <div key={`stories-chunk-${storiesChunkIndex}`} className={storiesListCss.storiesList__column}>
+      <div key={`stories-chunk-${storiesChunkIndex}`} className="stories-list__column">
         {stories}
       </div>
     );
   });
 
   return (
-    <HorizontalScroller innerAdditionalClassName={storiesListCss.storiesList}>
+    <HorizontalScroller innerAdditionalClassName="stories-list">
       {storiesColumnList}
     </HorizontalScroller>
   );

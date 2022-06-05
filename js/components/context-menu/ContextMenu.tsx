@@ -3,9 +3,7 @@ import { usePopper } from 'react-popper';
 import { When } from 'react-if';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
-import contextMenuCss from './assets/context-menu.module.scss';
 import { ContentMenuType, ContextMenuActionType } from './types';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   actions: ContextMenuActionType[];
@@ -18,7 +16,6 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
   onShow,
   onHide,
 }, forwardedRef) => {
-  useStyles(contextMenuCss);
   const [popoverTarget, setPopoverTarget] = useState<HTMLElement>(null);
   const [popper, setPopper] = useState<HTMLDivElement>(null);
   const [popperArrow, setPopperArrow] = useState<HTMLDivElement>(null);
@@ -73,7 +70,7 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
       <button
         type="button"
         key={title}
-        className={contextMenuCss.contextMenu__action}
+        className="context-menu__action"
         onClick={handlerClick}
         style={styles}
       >
@@ -85,13 +82,13 @@ const ContextMenu = forwardRef<ContentMenuType, PropsType>(({
   return (
     <When condition={isOpen()}>
       <div
-        className={contextMenuCss.contextMenu}
+        className="context-menu"
         ref={refMerged}
         style={popoverStyles.popper}
         {...popoverAttributes.popper}
       >
-        <div ref={setPopperArrow} style={popoverStyles.arrow} className={contextMenuCss.contextMenu__arrow} />
-        <div className={contextMenuCss.contextMenu__actions}>
+        <div ref={setPopperArrow} style={popoverStyles.arrow} className="context-menu__arrow" />
+        <div className="context-menu__actions">
           {actionList}
         </div>
       </div>

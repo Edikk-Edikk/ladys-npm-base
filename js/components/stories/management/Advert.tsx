@@ -1,8 +1,5 @@
 import React, { VFC } from 'react';
-// @ts-ignore
-import storiesManagementCss from './assets/stories-management.module.scss';
 import { StoriesManagementAdvertType } from '../types';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = Pick<StoriesManagementAdvertType, 'photo' | 'name' | 'description'> & {
   onClick: () => void;
@@ -13,27 +10,24 @@ const Advert: VFC<PropsType> = ({
   name,
   description,
   onClick,
-}) => {
-  useStyles(storiesManagementCss);
-  return (
-    <button
-      type="button"
-      className={storiesManagementCss.storiesManagementItem}
-      onClick={onClick}
-    >
-      <div className={storiesManagementCss.storiesManagementItem__imageHolder}>
-        <img className={storiesManagementCss.storiesManagementItem__image} src={photo} />
+}) => (
+  <button
+    type="button"
+    className="stories-management-item"
+    onClick={onClick}
+  >
+    <div className="stories-management-item__image-holder">
+      <img className="stories-management-item__image" src={photo} />
+    </div>
+    <div className="stories-management-item__info">
+      <div className="stories-management-item__name">
+        {name}
       </div>
-      <div className={storiesManagementCss.storiesManagementItem__info}>
-        <div className={storiesManagementCss.storiesManagementItem__name}>
-          {name}
-        </div>
-        <div className={storiesManagementCss.storiesManagementItem__description}>
-          {description}
-        </div>
+      <div className="stories-management-item__description">
+        {description}
       </div>
-    </button>
-  );
-};
+    </div>
+  </button>
+);
 
 export { Advert };

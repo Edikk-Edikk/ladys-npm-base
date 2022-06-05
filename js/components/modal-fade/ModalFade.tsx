@@ -7,10 +7,7 @@ import XmarkSvg from '@fortawesome/fontawesome-free/svgs/solid/xmark.svg';
 import { useHistory } from 'react-router';
 import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
-// @ts-ignore
-import modalFadeCss from './modal-fade.module.scss';
 import { SvgIcon } from '../svg-icon/SvgIcon';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 type PropsType = {
   id?: string;
@@ -28,7 +25,6 @@ const ModalFade: React.FC<PropsType> = ({
   children,
   close,
 }) => {
-  useStyles(modalFadeCss);
   const uuid = useMemo(() => id ?? v4(), [id]);
   const history = useHistory<HistoryLocationStateType>();
 
@@ -111,7 +107,7 @@ const ModalFade: React.FC<PropsType> = ({
     }
 
     return (
-      <button type="button" className={modalFadeCss.modalFade__close} onClick={handlerClose}>
+      <button type="button" className="modal-fade__close" onClick={handlerClose}>
         <SvgIcon icon={XmarkSvg} />
       </button>
     );
@@ -128,14 +124,14 @@ const ModalFade: React.FC<PropsType> = ({
         timeout={300}
         unmountOnExit
         classNames={{
-          enterActive: modalFadeCss.modalFadeEnterActive,
-          exitActive: modalFadeCss.modalFadeExitActive,
+          enterActive: 'modal-fade-enter-active',
+          exitActive: 'modal-fade-exit-active',
         }}
         onEnter={handlerEnter}
         onExit={handlerExit}
         onExited={handlerExited}
       >
-        <div className={modalFadeCss.modalFade}>
+        <div className="modal-fade">
           {renderClose()}
           {children}
         </div>

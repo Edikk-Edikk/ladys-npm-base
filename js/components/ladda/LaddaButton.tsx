@@ -17,37 +17,37 @@ class LaddaButton extends Component<PropsType, {}> {
   componentDidMount() {
     const { loading } = this.props;
 
-    this.laddaInstance = Ladda.create(this.node);
-
-    if (loading) {
-      this.laddaInstance.start();
-    }
+    // this.laddaInstance = Ladda.create(this.node);
+    //
+    // if (loading) {
+    //   this.laddaInstance.start();
+    // }
   }
 
   componentDidUpdate(prevProps) {
-    this.updateLaddaInstance(prevProps);
+    // this.updateLaddaInstance(prevProps);
   }
 
   componentWillUnmount() {
-    this.laddaInstance.remove();
+    // this.laddaInstance.remove();
   }
 
   setNode = (node) => {
     this.node = node;
-    if (node) {
-      this.laddaInstance = Ladda.create(node);
-    }
+    // if (node) {
+    //   this.laddaInstance = Ladda.create(node);
+    // }
   }
   updateLaddaInstance = (props) => {
     const { loading } = this.props;
 
-    if (props.loading !== loading) {
-      if (loading) {
-        this.laddaInstance.start();
-      } else {
-        this.laddaInstance.stop();
-      }
-    }
+    // if (props.loading !== loading) {
+    //   if (loading) {
+    //     this.laddaInstance.start();
+    //   } else {
+    //     this.laddaInstance.stop();
+    //   }
+    // }
   }
 
   render() {
@@ -56,24 +56,25 @@ class LaddaButton extends Component<PropsType, {}> {
       loading,
       children,
     } = this.props;
+    return children;
 
-    let childrenProps = omit(this.props, OMITTED_PROPS);
-
-    return cloneElement(children as ReactElement, {
-      ref: (element) => {
-        // @ts-ignore
-        const { ref } = children;
-
-        this.setNode(element);
-        if (typeof ref === 'function') {
-          ref(element);
-        } else if (ref && typeof ref === 'object' && 'current' in ref) {
-          ref.current = element;
-        }
-      },
-      disabled: disabled || loading,
-      ...childrenProps,
-    });
+    // let childrenProps = omit(this.props, OMITTED_PROPS);
+    //
+    // return cloneElement(children as ReactElement, {
+    //   ref: (element) => {
+    //     // @ts-ignore
+    //     const { ref } = children;
+    //
+    //     this.setNode(element);
+    //     if (typeof ref === 'function') {
+    //       ref(element);
+    //     } else if (ref && typeof ref === 'object' && 'current' in ref) {
+    //       ref.current = element;
+    //     }
+    //   },
+    //   disabled: disabled || loading,
+    //   ...childrenProps,
+    // });
   }
 }
 

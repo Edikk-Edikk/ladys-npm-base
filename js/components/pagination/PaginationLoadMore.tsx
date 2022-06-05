@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Button from 'react-bootstrap/Button';
-import { LaddaButton } from '../ladda';
 import { PaginationLoadMoreType } from './types';
 
 const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
@@ -11,7 +10,6 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
   isFetching,
   loadMore,
   loadMoreText,
-  laddaButtonProps,
 }) => {
   const totalPageCount = Math.ceil(totalCount / pageSize);
   if (page >= totalPageCount) {
@@ -38,7 +36,13 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
     }
 
     return (
-      <Button variant="secondary" size="lg" className="w-100 mt-3">
+      <Button
+        variant="secondary"
+        size="lg"
+        className="w-100 mt-3"
+        disabled={isFetching}
+        onClick={handlerClick}
+      >
         <div className="text-center">
           {renderLoadMoreText()}
         </div>
@@ -47,18 +51,9 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
   };
 
   return (
-    <LaddaButton
-      loading={isFetching}
-      onClick={handlerClick}
-      data-color={laddaButtonProps?.['data-color']}
-      data-size={laddaButtonProps?.['data-size']}
-      data-style={laddaButtonProps?.['data-style']}
-      data-spinner-size={laddaButtonProps?.['data-spinner-size']}
-      data-spinner-color={laddaButtonProps?.['data-spinner-color']}
-      data-spinner-lines={laddaButtonProps?.['data-spinner-lines']}
-    >
+    <>
       {renderContent()}
-    </LaddaButton>
+    </>
   );
 };
 

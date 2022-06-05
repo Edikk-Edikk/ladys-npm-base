@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import ButtonBootstrap, { ButtonProps } from 'react-bootstrap/Button';
-import { LaddaButton } from '../../../ladda';
 
 type PropsType = {
   text: ReactNode | string;
@@ -39,21 +38,20 @@ const Button: React.FC<PropsType> = ({
   }, [isEntered]);
 
   return (
-    <LaddaButton loading={loading} disabled={disabled && !loading}>
-      <ButtonBootstrap
-        variant={variant}
-        size={size}
-        ref={ref}
-        className="flex-sm-grow-0 flex-grow-1"
-        onClick={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          onClick();
-        }}
-      >
-        {text}
-      </ButtonBootstrap>
-    </LaddaButton>
+    <ButtonBootstrap
+      variant={variant}
+      size={size}
+      ref={ref}
+      className="flex-sm-grow-0 flex-grow-1"
+      disabled={disabled || loading}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        onClick();
+      }}
+    >
+      {text}
+    </ButtonBootstrap>
   );
 };
 

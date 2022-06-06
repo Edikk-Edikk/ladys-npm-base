@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { v4 } from 'uuid';
 import { HistoryLocationStateType } from './HistoryLocationStateType';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 
 type PropsType = {
   id?: string;
@@ -107,7 +107,7 @@ const ModalFade: React.FC<PropsType> = ({
 
     return (
       <button type="button" className="modal-fade__close" onClick={handlerClose}>
-        <FontAwesomeIcon icon={solid('xmark')} />
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     );
   };

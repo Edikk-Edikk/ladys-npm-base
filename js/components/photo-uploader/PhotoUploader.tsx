@@ -8,7 +8,7 @@ import { RemoveSuccessType } from './types/RemoveSuccessType';
 import { ChangeInfoSuccessType } from './types/ChangeInfoSuccessType';
 import { useNetworkService } from '../network-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 
 type PropTypes = {
   btnText: string;
@@ -188,7 +188,7 @@ const PhotoUploader: React.FC<PropTypes> = ({
       <div className="photo-uploader">
         <If condition={isProcess}>
           <Then>
-            <FontAwesomeIcon icon={solid('spinner')} spin className="photo-uploader__loader" />
+            <FontAwesomeIcon icon={faSpinner} spin className="photo-uploader__loader" />
           </Then>
           <Else>
             <label className="photo-uploader__button">

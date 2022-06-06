@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight';
 import React from 'react';
 
 const StoriesSwiperNavigationNext = ({ swiper }) => {
@@ -17,7 +17,7 @@ const StoriesSwiperNavigationNext = ({ swiper }) => {
       )}
       onClick={handlerClick}
     >
-      <FontAwesomeIcon icon={solid('angle-right')} />
+      <FontAwesomeIcon icon={faAngleRight} />
     </button>
   );
 };

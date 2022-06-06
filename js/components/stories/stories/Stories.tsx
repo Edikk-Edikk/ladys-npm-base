@@ -3,7 +3,7 @@ import { Else, If, Then } from 'react-if';
 import classNames from 'classnames';
 import { StoriesType } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faSpinner from '@fortawesome/free-solid-svg-icons/faSpinner';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 type PropsType = Pick<StoriesType, 'id' | 'photoThumbUrl' | 'time'> & {
   onClick: () => void;
@@ -43,7 +43,7 @@ const Stories = forwardRef<HTMLDivElement, PropsType>(({
         <If condition={isProcess}>
           <Then>
             <div className="stories__process-indicator">
-              <FontAwesomeIcon icon={faSpinner} spin />
+              <FontAwesomeIcon icon={solid('spinner')} spin />
             </div>
           </Then>
           <Else>

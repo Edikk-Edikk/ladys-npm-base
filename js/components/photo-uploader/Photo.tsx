@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import useMounted from '@restart/hooks/useMounted';
 import { PhotoType } from './types/PhotoType';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faTrashCan from '@fortawesome/free-solid-svg-icons/faTrashCan';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 type PropTypes = PhotoType & {
   onClickRemove: (id: number) => Promise<void>;
@@ -61,7 +61,7 @@ const Photo: React.FC<PropTypes> = ({
           onClick={handlerClickRemove}
           disabled={isProcessDelete}
         >
-          <FontAwesomeIcon icon={faTrashCan} />
+          <FontAwesomeIcon icon={solid('trash-can')} />
         </button>
         <div className="uploader-result-item-preview">
           <img src={url} />

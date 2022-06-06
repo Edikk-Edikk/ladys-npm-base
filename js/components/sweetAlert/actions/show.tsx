@@ -4,6 +4,8 @@ import { SWEET_ALERT_SHOW, SWEET_ALERT_UPDATE } from '../constants';
 import { ActionWithPayloadType } from '../../redux';
 import { OptionalPropsType } from '../base/types/OptionalPropsType';
 import { StateSweetAlertType } from '../types/StateSweetAlertType';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons/faLongArrowAltRight';
 
 const sweetAlertShow = (config: StateSweetAlertType): ActionWithPayloadType<StateSweetAlertType> => ({
   type: SWEET_ALERT_SHOW,
@@ -37,10 +39,9 @@ const sweetAlertErrorShow = (config: StateSweetAlertType = {}): ActionWithPayloa
       btnSize: null,
       confirmBtnText: (
         <>
-          <div className="d-flex align-items-center">
-            Come back
-            <i className="fal fa-long-arrow-right" />
-          </div>
+          Come back
+          <i className="fal fa-long-arrow-right" />
+          <FontAwesomeIcon icon={faLongArrowAltRight} />
         </>
       ),
       ...config,

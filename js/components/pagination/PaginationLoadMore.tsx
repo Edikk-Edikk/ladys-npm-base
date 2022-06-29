@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from 'react-bootstrap/Button';
 import { PaginationLoadMoreType } from './types';
 
 const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
@@ -10,6 +9,7 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
   isFetching,
   loadMore,
   loadMoreText,
+  className = 'btn btn-primary btn-lg w-100 mt-3',
 }) => {
   const totalPageCount = Math.ceil(totalCount / pageSize);
   if (page >= totalPageCount) {
@@ -36,17 +36,16 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
     }
 
     return (
-      <Button
-        variant="secondary"
-        size="lg"
-        className="w-100 mt-3"
+      <button
+        type="button"
+        className={className}
         disabled={isFetching}
         onClick={handlerClick}
       >
         <div className="text-center">
           {renderLoadMoreText()}
         </div>
-      </Button>
+      </button>
     );
   };
 

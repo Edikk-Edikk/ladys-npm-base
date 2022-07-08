@@ -1,5 +1,5 @@
 import React, {
-  forwardRef, MutableRefObject,
+  forwardRef, MutableRefObject, ReactNode,
   useCallback, useEffect,
   useImperativeHandle, useMemo, useRef,
   useState,
@@ -18,6 +18,7 @@ import { ModalFlatDialog } from './ModalFlatDialog';
 import { Subject, Subscription } from 'rxjs';
 
 type PropsType = {
+  children: ReactNode,
   id?: string;
   onEnter?: () => void;
   onEntering?: () => void;

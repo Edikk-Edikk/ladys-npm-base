@@ -3,14 +3,15 @@ import isPlainObject from 'lodash/isPlainObject';
 import { ErrorWithRedirect } from './errors/ErrorWithRedirect';
 import
   axios,
-  {
-    AxiosError,
-    AxiosInstance,
-    AxiosRequestConfig,
-    AxiosResponse,
-  } from 'axios';
+{
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import * as qs from 'qs';
 import { ApiErrorUnauthorized } from './errors/ApiErrorUnauthorized';
+import { ApiErrorNotFound } from './errors/ApiErrorNotFound';
 import { ConfigType } from './types/ConfigType';
 import { ERROR_MESSAGE_DEFAULT } from '../../constants';
 import { ResponseType } from './types/ResponseType';
@@ -55,6 +56,9 @@ class NetworkService implements NetworkServiceInterface {
         if (!response.data.status && 'error' in response.data) {
           if (response.data.statusCode === 401) {
             return Promise.reject(new ApiErrorUnauthorized(response.data.error, response.data.statusCode));
+          }
+          if (response.data.statusCode === 404) {
+            return Promise.reject(new ApiErrorNotFound(response.data.error, response.data.statusCode));
           }
           return Promise.reject(new ApiError(response.data.error, response.data.statusCode));
         }

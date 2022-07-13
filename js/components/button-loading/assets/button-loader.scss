@@ -1,0 +1,26 @@
+.button-loader {
+  position: relative;
+
+  &__content {
+    opacity: 1;
+    transition: opacity 300ms;
+
+    &_hide {
+      opacity: 0;
+    }
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    opacity: 0;
+    transition: opacity 300ms;
+
+    &_visible {
+      opacity: 1;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { PaginationLoadMoreType } from './types';
+import { ButtonLoader } from '../button-loading/ButtonLoader';
 
 const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
   children,
@@ -36,16 +37,19 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
     }
 
     return (
-      <button
-        type="button"
-        className={className}
+      <ButtonLoader
+        tagProps={{
+          className: className,
+        }}
         disabled={isFetching}
+        loading={isFetching}
+        loaderSize={15}
         onClick={handlerClick}
       >
         <div className="text-center">
           {renderLoadMoreText()}
         </div>
-      </button>
+      </ButtonLoader>
     );
   };
 

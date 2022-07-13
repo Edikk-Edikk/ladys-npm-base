@@ -11,6 +11,8 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
   loadMore,
   loadMoreText,
   className = 'btn btn-primary btn-lg w-100 mt-3',
+  loaderColor,
+  loaderSize,
 }) => {
   const totalPageCount = Math.ceil(totalCount / pageSize);
   if (page >= totalPageCount) {
@@ -43,7 +45,8 @@ const PaginationLoadMore: React.FC<PaginationLoadMoreType> = ({
         }}
         disabled={isFetching}
         loading={isFetching}
-        loaderSize={15}
+        loaderSize={loaderSize}
+        loaderColor={loaderColor}
         onClick={handlerClick}
       >
         <div className="text-center">

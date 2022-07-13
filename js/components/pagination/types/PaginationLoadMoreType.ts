@@ -7,6 +7,8 @@ type PaginationLoadMoreType =
   isFetching: boolean;
   loadMore: (nextPage: number) => void;
   loadMoreText?: (countInNextPage: number) => string;
+  loaderColor?: string;
+  loaderSize?: number;
 }
 
 export { PaginationLoadMoreType };

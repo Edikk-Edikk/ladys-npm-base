@@ -16,6 +16,7 @@ import { ModalFlatContext } from './context';
 import { ModalFlatHistoryLocationStateType } from './types';
 import { ModalFlatDialog } from './ModalFlatDialog';
 import { Subject, Subscription } from 'rxjs';
+import canUseDOM from 'can-use-dom';
 
 type PropsType = {
   children: ReactNode,
@@ -165,6 +166,10 @@ const ModalFlat = forwardRef<ModalFlatType, PropsType>(({
   const modalFlatContextValue: ModalFlatContextType = {
     hide,
   };
+
+  if (!canUseDOM) {
+    return null;
+  }
 
   return ReactDOM.createPortal(
     (

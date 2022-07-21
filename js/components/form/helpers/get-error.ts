@@ -5,7 +5,7 @@ const getError = (form: FormState<any>, name: string): string | null => {
     return form.errors[name];
   }
 
-  return name in form.submitErrors ? form.submitErrors[name] : null;
+  return form.submitErrors && name in form.submitErrors ? form.submitErrors[name] : null;
 };
 
 export { getError };

@@ -1,6 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import Inputmask from 'inputmask';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import { InputPropsType } from '../types/InputPropsType';
 
@@ -33,7 +32,10 @@ const Input: React.FC<PropsType> = forwardRef(({
       return;
     }
 
-    Inputmask(inputmask).mask(refInput.current);
+    import('inputmask').then((module) => {
+      const Inputmask = module.default;
+      Inputmask(inputmask).mask(refInput.current);
+    });
   }, []);
 
   return (
